@@ -1,13 +1,13 @@
-package Pokedex.Backend.src.main.java.com.pokedex.api;
+package com.pokedex.pokedex_api;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 public class ServletInitializer extends SpringBootServletInitializer {
 
-  @Override
-  protected SpringApplicationBuilder
-  configure(SpringApplicationBuilder application) {
-    return application.sources(ApiApplication.class);
-  }
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+		return application.sources(PokedexApiApplication.class);
+	}
+
 }

@@ -1,11 +1,13 @@
-package Pokedex.Backend.src.test.java.com.pokedex.api;
+package com.pokedex.pokedex_api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ApiApplicationTests {
+class PokedexApiApplicationTests {
 
-  @Test
-  void contextLoads() {}
+	@Test
+	void contextLoads() {
+	}
+
 }
