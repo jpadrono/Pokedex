@@ -3,15 +3,15 @@ package com.pokedex.pokedex_api.entities;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class Quiz {
+public class QuizEntity {
 
   private String questionText;
-  private final ArrayList<Answer> answerValueDictParsed = new ArrayList<>();
+  private final ArrayList<AnswerEntity> answerValueDictParsed = new ArrayList<>();
 
-  public Quiz(String questionText, Map<String, String> _answerValueDictFromURL) {
+  public QuizEntity(String questionText, Map<String, String> _answerValueDictFromURL) {
     this.questionText = questionText;
     for (Map.Entry<String, String> ans : _answerValueDictFromURL.entrySet()) {
-      Answer answer = new Answer(ans.getKey(), Boolean.valueOf(ans.getValue()));
+      AnswerEntity answer = new AnswerEntity(ans.getKey(), Boolean.valueOf(ans.getValue()));
       this.answerValueDictParsed.add(answer);
     }
   }
@@ -24,12 +24,12 @@ public class Quiz {
     this.questionText = _questionText;
   }
 
-  public ArrayList<Answer> getAnswers() {
+  public ArrayList<AnswerEntity> getAnswers() {
     return this.answerValueDictParsed;
   }
 
   public void addAnswers(String answerText, Boolean answerValue) {
-    Answer answer = new Answer(answerText, answerValue);
+    AnswerEntity answer = new AnswerEntity(answerText, answerValue);
     this.answerValueDictParsed.add(answer);
   }
 

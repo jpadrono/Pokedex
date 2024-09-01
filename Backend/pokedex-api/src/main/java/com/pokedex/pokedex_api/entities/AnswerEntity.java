@@ -1,10 +1,10 @@
 package com.pokedex.pokedex_api.entities;
 
-public class Answer {
+public class AnswerEntity {
     private String answerText;
     private Boolean answerValue;
 
-    public Answer(String answerText, Boolean answerValue) {
+    public AnswerEntity(String answerText, Boolean answerValue) {
         this.answerText = answerText;
         this.answerValue = answerValue;
     }
