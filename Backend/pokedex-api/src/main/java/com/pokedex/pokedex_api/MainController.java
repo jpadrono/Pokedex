@@ -48,4 +48,7 @@ public class MainController {
         }
         return new ApiResponse<>(pokemon, message);
         }
+
+      @GetMapping("/cu")
+      public ApiResponse<PokemonEntity> user () {}
 }
