@@ -30,5 +30,13 @@ public class PokedexController {
         return null;
     }
 
-    int vasco = 6;
+    public PokemonEntity getPokemonByName(String name) {
+
+        for (PokemonEntity p : pokedex) {
+            if (p.getName().equals(name)) {
+                return p;
+            }
+        }
+        return null;
+    }
 }
