@@ -29,4 +29,6 @@ public class PokedexController {
         }
         return null;
     }
+
+    int vasco = 6;
 }
