@@ -17,24 +17,14 @@ public class UserService {
 
     public ApiResponse<Iterable<UserEntity>> findAll() {
         Iterable<UserEntity> usersAll = userRepository.findAll();
-        if (!usersAll.iterator().hasNext()) {
-            ApiResponse<Iterable<UserEntity>> response = new ApiResponse<>(usersAll, "404");
-            return response;
-        } else {
-            ApiResponse<Iterable<UserEntity>> response = new ApiResponse<>(usersAll, "200");
-            return response;
-        }
+        ApiResponse<Iterable<UserEntity>> response = new ApiResponse<>(usersAll, "200");
+        return response;
     }
 
-    public ApiResponse<UserEntity> findByUsername(String username) {
-        UserEntity user = userRepository.findByUsername(username);
-        if (user == null) {
-            ApiResponse<UserEntity> response = new ApiResponse<>(user, "404");
-            return response;
-        } else {
-            ApiResponse<UserEntity> response = new ApiResponse<>(user, "200");
-            return response;
-        }
+    public ApiResponse<Iterable<UserEntity>> findByUsername(String username) {
+        Iterable<UserEntity> users = userRepository.findByUsername(username);
+        ApiResponse<Iterable<UserEntity>> response = new ApiResponse<>(users, "200");
+        return response;
     }
 
     public void createUser(String username, String password) {
