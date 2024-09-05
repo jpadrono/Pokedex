@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.pokedex.pokedex_api.entities.UserEntity;
 
 @Repository
-public interface UserRepository extends CrudRepository<UserEntity,Integer>{
+public interface UserRepository extends CrudRepository<UserEntity, Integer> {
+
     UserEntity findByUsername(String username);
 }

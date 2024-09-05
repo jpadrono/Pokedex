@@ -8,12 +8,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pokedex.pokedex_api.controllers.PokedexController;
 import com.pokedex.pokedex_api.entities.PokemonEntity;
 import com.pokedex.pokedex_api.entities.QuizEntity;
 import com.pokedex.pokedex_api.entities.UserEntity;
 
 @RestController
 public class MainController {
+
     @GetMapping("/Quiz") // http://localhost:8080/Quiz
     public QuizEntity getMethodName(@RequestParam String question, @RequestParam Map<String, String> answerValueDict) {
         answerValueDict.remove("question");

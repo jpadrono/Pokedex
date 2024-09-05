@@ -1,6 +1,7 @@
 package com.pokedex.pokedex_api.entities;
 
 public class AnswerEntity {
+
     private String answerText;
     private Boolean answerValue;
 

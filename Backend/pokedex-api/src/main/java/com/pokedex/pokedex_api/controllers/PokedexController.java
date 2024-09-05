@@ -1,4 +1,4 @@
-package com.pokedex.pokedex_api;
+package com.pokedex.pokedex_api.controllers;
 
 import java.util.ArrayList;
 
