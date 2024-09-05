@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 
 @Entity
 public class UserEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -42,4 +43,13 @@ public class UserEntity {
     public void setId(long id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "UserEntity [id=" + id + ", username=" + username + ", password=" + password + "]";
+    }
+
+    public UserEntity() {
+    }
+
 }
