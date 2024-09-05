@@ -3,10 +3,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Entity
 public class PokemonEntity {
 private String name;
+private String species;
+
+    @Id
     Integer id;
     ArrayList<String> types;
     ArrayList<String> evolves_to;
