@@ -2,6 +2,9 @@ package com.pokedex.pokedex_api.entities;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class PokemonEntity {
 private String name;
     Integer id;
