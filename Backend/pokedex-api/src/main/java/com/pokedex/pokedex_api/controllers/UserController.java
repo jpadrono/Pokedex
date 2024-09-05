@@ -1,8 +1,6 @@
 package com.pokedex.pokedex_api.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,13 +30,13 @@ public class UserController {
     }
 
     @GetMapping("/user/all")
-    public ApiResponse<Iterable<UserEntity>> getAllUsers() {
-        return userService.findAll();
+    public Iterable<UserEntity> getAllUsers() {
+        return userRepository.findAll();
     }
 
     @GetMapping("/user/{username}")
-    public ApiResponse<UserEntity> findUserByUsername(@PathVariable("username") String username) {
-        return userService.findByUsername(username);
+    public Iterable<UserEntity> findUserByUsername(@PathVariable("username") String username) {
+        return userRepository.findByUsername(username);
     }
 
 }
