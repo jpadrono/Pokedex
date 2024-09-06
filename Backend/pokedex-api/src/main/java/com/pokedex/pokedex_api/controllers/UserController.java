@@ -29,14 +29,7 @@ public class UserController {
 
     @PostMapping("/user/create")
     public ApiResponse<UserEntity> createUser(@RequestParam String username, @RequestParam(defaultValue = "") String password) {
-        UserEntity user = new UserEntity();
-
-        user.setUsername(username);
-        user.setPassword(password);
-        
-        userService.createUser(username, password);
-        ApiResponse<UserEntity> response = new ApiResponse<>(user, "Usuario Criado");
-        return response;
+        return userService.createUser(username, password);
     }
 
     @GetMapping("/user/all")
