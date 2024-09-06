@@ -27,10 +27,14 @@ public class UserService {
         return response;
     }
 
-    public void createUser(String username, String password) {
-        UserEntity user = new UserEntity();
-        user.setUsername(username);
-        user.setPassword(password);
-        userRepository.save(user);
+    public ApiResponse<UserEntity> createUser(String username, String password) {
+        Iterable<UserEntity> userTest = userRepository.findByUsername(username);
+        if (userTest.iterator().hasNext()){
+            ApiResponse<UserEntity> response = new ApiResponse<>(null, "Usuario já existe");
+            return response;
+        }
+        userRepository.save(new UserEntity(username,password));
+        ApiResponse<UserEntity> response = new ApiResponse<>(new UserEntity(username,password), "Usuario criado com sucesso");
+        return response;
     }
 }
