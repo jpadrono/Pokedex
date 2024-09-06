@@ -12,6 +12,8 @@ import com.pokedex.pokedex_api.entities.UserEntity;
 import com.pokedex.pokedex_api.repository.UserRepository;
 import com.pokedex.pokedex_api.service.UserService;
 
+import jakarta.annotation.PostConstruct;
+
 @RestController
 public class UserController {
 
@@ -19,12 +21,20 @@ public class UserController {
     private UserRepository userRepository;
     private UserService userService;
 
+    @PostConstruct
+    public void init() {
+        userService = new UserService(userRepository);
+        }
+
+
     @PostMapping("/user/create")
     public ApiResponse<UserEntity> createUser(@RequestParam String username, @RequestParam(defaultValue = "") String password) {
         UserEntity user = new UserEntity();
+
         user.setUsername(username);
         user.setPassword(password);
-        userRepository.save(user);
+        
+        userService.createUser(username, password);
         ApiResponse<UserEntity> response = new ApiResponse<>(user, "Usuario Criado");
         return response;
     }
