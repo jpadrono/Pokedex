@@ -17,24 +17,20 @@ public class UserService {
 
     public ApiResponse<Iterable<UserEntity>> findAll() {
         Iterable<UserEntity> usersAll = userRepository.findAll();
-        ApiResponse<Iterable<UserEntity>> response = new ApiResponse<>(usersAll, "200");
-        return response;
+        return new ApiResponse<>(usersAll, "200");
     }
 
     public ApiResponse<Iterable<UserEntity>> findByUsername(String username) {
         Iterable<UserEntity> users = userRepository.findByUsername(username);
-        ApiResponse<Iterable<UserEntity>> response = new ApiResponse<>(users, "200");
-        return response;
+        return new ApiResponse<>(users, "200");
     }
 
     public ApiResponse<UserEntity> createUser(String username, String password) {
         Iterable<UserEntity> userTest = userRepository.findByUsername(username);
         if (userTest.iterator().hasNext()){
-            ApiResponse<UserEntity> response = new ApiResponse<>(null, "Usuario já existe");
-            return response;
+            return new ApiResponse<>(null, "Usuario já existe");
         }
         userRepository.save(new UserEntity(username,password));
-        ApiResponse<UserEntity> response = new ApiResponse<>(new UserEntity(username,password), "Usuario criado com sucesso");
-        return response;
+        return  new ApiResponse<>(new UserEntity(username,password), "Usuario criado com sucesso");
     }
 }
