@@ -13,15 +13,21 @@ public class PokemonEntity {
     @Id
     Integer id;
 
+    Integer height;
+    Integer weight;
     ArrayList<String> types;
     ArrayList<String> evolves_to;
+    ArrayList<String> abilities;
     HashMap<String, Integer> stats;
 
-    public PokemonEntity(String name, Integer id) {
+    public PokemonEntity(String name, Integer id, Integer height, Integer weight) {
         this.name = name;
         this.id = id;
+        this.height = height;
+        this.weight=weight;
         types = new ArrayList<>();
         evolves_to = new ArrayList<>();
+        abilities= new ArrayList<>();
         stats = new HashMap<>();
     }
 
@@ -49,6 +55,14 @@ public class PokemonEntity {
         types.add(type);
     }
 
+    public ArrayList<String> getAbilities() {
+        return abilities;
+    }
+
+    public void setAbilities(String ability) {
+        abilities.add(ability);
+    }
+
     public ArrayList<String> getEvolves_to() {
         return evolves_to;
     }
@@ -68,5 +82,21 @@ public class PokemonEntity {
         stats.put("special_attack", special_attack);
         stats.put("special_defense", special_defense);
         stats.put("speed", speed);
+    }
+
+    public Integer getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Integer weight) {
+        this.weight = weight;
+    }
+
+    public Integer getHeight() {
+        return height;
+    }
+    
+    public void setHeight(Integer height) {
+        this.height = height;
     }
 }
