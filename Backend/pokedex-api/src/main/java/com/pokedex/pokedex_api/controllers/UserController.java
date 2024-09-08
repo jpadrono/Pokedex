@@ -1,6 +1,7 @@
 package com.pokedex.pokedex_api.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,7 @@ import com.pokedex.pokedex_api.service.UserService;
 
 import jakarta.annotation.PostConstruct;
 
+
 @RestController
 public class UserController {
 
@@ -24,11 +26,11 @@ public class UserController {
     @PostConstruct
     public void init() {
         userService = new UserService(userRepository);
-        }
-
+    }
 
     @PostMapping("/user/create")
-    public ApiResponse<UserEntity> createUser(@RequestParam String username, @RequestParam(defaultValue = "") String password) {
+    public ApiResponse<UserEntity> createUser(@RequestParam String username,
+            @RequestParam(defaultValue = "") String password) {
         return userService.createUser(username, password);
     }
 
@@ -38,8 +40,8 @@ public class UserController {
     }
 
     @GetMapping("/user/{username}")
-    public Iterable<UserEntity> findUserByUsername(@PathVariable("username") String username) {
-        return userRepository.findByUsername(username);
+    public ApiResponse<Iterable<UserEntity>> findUserByUsername(@PathVariable("username") String username) {
+        return userService.findByUsername(username);
     }
 
     @PostMapping("/user/login")
@@ -47,4 +49,8 @@ public class UserController {
         return userService.login(username, password);
     }
 
+    @DeleteMapping("/user/delete/{id}")
+    public ApiResponse<UserEntity> deleteById(@PathVariable Integer id) {
+        return userService.deleteUser(id);
+    }
 }
