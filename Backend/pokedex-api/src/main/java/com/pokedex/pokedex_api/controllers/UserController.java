@@ -42,4 +42,9 @@ public class UserController {
         return userRepository.findByUsername(username);
     }
 
+    @PostMapping("/user/login")
+    public ApiResponse<String> login(@RequestParam String username, @RequestParam String password) {
+        return userService.login(username, password);
+    }
+
 }
