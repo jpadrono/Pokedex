@@ -8,19 +8,18 @@ import com.pokedex.pokedex_api.entities.PokemonEntity;
 import com.pokedex.pokedex_api.service.PokeApiService;
 
 public class PokedexController {
+
     private ArrayList<PokemonEntity> pokedex = new ArrayList<>();
+    RestTemplate restTemplate=new RestTemplate();
+    PokeApiService pokeApiService= new  PokeApiService(restTemplate);
 
     public PokedexController() {
-        // Essa parte pegamos os dados do pokeApi, por enquanto só vou fazer com 2
-        // exemplos
-        RestTemplate restTemplate=new RestTemplate();
-        PokeApiService pokeApiService= new  PokeApiService(restTemplate);
-        PokemonEntity pokemon_1 = new PokemonEntity("Bulbasaur", 1,2,3);
-        PokemonEntity pokemon_2 = new PokemonEntity("Ivysaur", 2, 4,5);
-        PokemonEntity pokemon_3= pokeApiService.getPokemon(1);
-        pokedex.add(pokemon_1);
-        pokedex.add(pokemon_2);
-        pokedex.add(pokemon_3);
+        //Pego os Pokemons da pokeAPI e coloco no pokedex
+        for(int i=1; i<152; i++){
+            PokemonEntity pokemon=pokeApiService.getPokemon(i);
+            //pokemonRepository.save(pokemon);
+            pokedex.add(pokemon);
+        }
     }
 
     public ArrayList<PokemonEntity> getAll() {
@@ -28,7 +27,7 @@ public class PokedexController {
     }
 
     public PokemonEntity getPokemonById(Integer id) {
-
+        
         for (PokemonEntity p : pokedex) {
             if (p.getId().equals(id)) {
                 return p;

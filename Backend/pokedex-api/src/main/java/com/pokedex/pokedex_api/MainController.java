@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.pokedex.pokedex_api.controllers.PokedexController;
 import com.pokedex.pokedex_api.entities.PokemonEntity;
 import com.pokedex.pokedex_api.entities.QuizEntity;
-import com.pokedex.pokedex_api.entities.UserEntity;
+
 
 @RestController
 public class MainController {
@@ -31,7 +31,7 @@ public class MainController {
     }
 
     @GetMapping("/pokedex/{id}") // http://localhost:8080/pokedex/2
-    public ApiResponse<PokemonEntity> usersById(@PathVariable("id") Integer id) {
+    public ApiResponse<PokemonEntity> pokemonsById(@PathVariable("id") Integer id) {
         PokedexController controller = new PokedexController();
         PokemonEntity pokemon = controller.getPokemonById(id);
         String message = "Pokemon details";
@@ -41,7 +41,7 @@ public class MainController {
         return new ApiResponse<>(pokemon, message);
     }
 
-    @GetMapping("/pokedex/{name}") // http://localhost:8080/pokedex/2
+    @GetMapping("/pokedex/{name}") // http://localhost:8080/pokedex/ivysaur
     public ApiResponse<PokemonEntity> pokemonByName(@PathVariable("name") String name) {
         PokedexController controller = new PokedexController();
         PokemonEntity pokemon = controller.getPokemonByName(name);
