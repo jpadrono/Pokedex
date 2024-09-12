@@ -1,24 +1,24 @@
 package com.pokedex.pokedex_api.entities;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+//import java.util.HashMap;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 @Entity
 public class PokemonEntity {
-
+    public PokemonEntity(){}
     private String name;
     @Id
     Integer id;
 
-    Integer height;
-    Integer weight;
-    ArrayList<String> types;
-    ArrayList<String> evolves_to;
-    ArrayList<String> abilities;
-    HashMap<String, Integer> stats;
+    private Integer height;
+    private Integer weight;
+    private ArrayList<String> types;
+    private ArrayList<String> evolves_to;
+    private ArrayList<String> abilities;
+    private String stats;
 
     public PokemonEntity(String name, Integer id, Integer height, Integer weight) {
         this.name = name;
@@ -28,7 +28,6 @@ public class PokemonEntity {
         types = new ArrayList<>();
         evolves_to = new ArrayList<>();
         abilities= new ArrayList<>();
-        stats = new HashMap<>();
     }
 
     public String getName() {
@@ -71,17 +70,14 @@ public class PokemonEntity {
         evolves_to.add(pokemon);
     }
 
-    public HashMap<String, Integer> getStats() {
-        return stats;
+    public void setStats(Integer hp, Integer attack, Integer defense, Integer special_attack, Integer special_defense, Integer speed) {
+        this.stats = "hp: " + hp + ", attack: " + attack + ", defense: " + defense +
+                     ", special_attack: " + special_attack + ", special_defense: " + special_defense +
+                     ", speed: " + speed;
     }
 
-    public void setStats(Integer hp, Integer attack, Integer defense, Integer special_attack, Integer special_defense, Integer speed) {
-        stats.put("hp", hp);
-        stats.put("attack", attack);
-        stats.put("defense", defense);
-        stats.put("special_attack", special_attack);
-        stats.put("special_defense", special_defense);
-        stats.put("speed", speed);
+    public String getStats() {
+        return stats;
     }
 
     public Integer getWeight() {

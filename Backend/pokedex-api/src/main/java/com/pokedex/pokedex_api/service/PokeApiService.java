@@ -6,7 +6,6 @@ import java.util.Set;
 
 //import org.hibernate.mapping.Set;
 import org.springframework.web.client.RestTemplate;
-
 import com.fasterxml.jackson.databind.JsonNode;
 import com.pokedex.pokedex_api.entities.PokemonEntity;
 
@@ -32,12 +31,8 @@ public class PokeApiService {
         
         //Criando o pokemon
         PokemonEntity pokemon= new PokemonEntity(name, id, height, weight);
-        JsonNode abilitiesNode = jsonNode.get("abilities");
-        JsonNode statsNode = jsonNode.get("stats");
-        List<Integer> statsValues = new ArrayList<>();
-        JsonNode typesNode = jsonNode.get("types");
-        JsonNode speciesNode = jsonNode.get("species");
 
+        JsonNode abilitiesNode = jsonNode.get("abilities");
         if (abilitiesNode != null && abilitiesNode.isArray()) {
             for (JsonNode abilityNode : abilitiesNode) {
                 // Acessa o objeto ability dentro de cada item da lista
@@ -46,6 +41,9 @@ public class PokeApiService {
                 pokemon.setAbilities(abilityName);
             }
         }
+
+        List<Integer> statsValues = new ArrayList<>();
+        JsonNode statsNode = jsonNode.get("stats");
         if (statsNode != null && statsNode.isArray()) {
             for (JsonNode Node : statsNode) {
                 // Acessa o objeto ability dentro de cada item da lista
@@ -55,6 +53,7 @@ public class PokeApiService {
         }
         pokemon.setStats(statsValues.get(0), statsValues.get(1), statsValues.get(2), statsValues.get(3), statsValues.get(4), statsValues.get(5));
 
+        JsonNode typesNode = jsonNode.get("types");
         if (typesNode != null && typesNode.isArray()) {
             for (JsonNode typeNode : typesNode) {
                 // Acessa o objeto ability dentro de cada item da lista
@@ -64,6 +63,7 @@ public class PokeApiService {
             }
         }
 
+        JsonNode speciesNode = jsonNode.get("species");
          if (speciesNode != null) {
                 String speciesUrl = speciesNode.get("url").asText();
                 JsonNode speciesData = restTemplate.getForObject(speciesUrl, JsonNode.class);
@@ -86,6 +86,7 @@ public class PokeApiService {
         
         return pokemon;
 }
+
 private void extractEvolutionNames(JsonNode chainNode, Set<String> evolutionNames) {
     if (chainNode != null) {
         JsonNode speciesNode = chainNode.get("species");
