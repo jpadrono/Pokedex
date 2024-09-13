@@ -1,5 +1,7 @@
 package com.pokedex.pokedex_api.entities;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -7,12 +9,32 @@ import jakarta.persistence.Id;
 
 @Entity
 public class UserEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     private String username;
     private String password;
+    private String authToken;
+    private LocalDateTime authTokenExpiration;
+
+    public LocalDateTime getAuthTokenExpiration() {
+        return authTokenExpiration;
+    }
+
+    public void setAuthTokenExpiration(LocalDateTime authTokenExpiration) {
+        this.authTokenExpiration = authTokenExpiration;
+    }
+
+    public String getAuthToken() {
+        return authToken;
+    }
+
+    public void setAuthToken(String authToken) {
+        this.authToken = authToken;
+    }
+
 
     public UserEntity(String username, String password) {
         this.username = username;
@@ -42,4 +64,13 @@ public class UserEntity {
     public void setId(long id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "UserEntity [id=" + id + ", username=" + username + ", password=" + password + "]";
+    }
+
+    public UserEntity() {
+    }
+
 }

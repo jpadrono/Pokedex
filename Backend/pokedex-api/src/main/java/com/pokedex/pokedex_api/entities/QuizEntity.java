@@ -1,16 +1,25 @@
 package com.pokedex.pokedex_api.entities;
 
 import java.util.ArrayList;
-import java.util.Map;
+import java.util.HashMap;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class QuizEntity {
 
   private String questionText;
   private final ArrayList<AnswerEntity> answerValueDictParsed = new ArrayList<>();
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  Integer id;
 
-  public QuizEntity(String questionText, Map<String, String> _answerValueDictFromURL) {
+  public QuizEntity(String questionText, HashMap<String, String> answerValueDictFromURL) {
     this.questionText = questionText;
-    for (Map.Entry<String, String> ans : _answerValueDictFromURL.entrySet()) {
+    for (HashMap.Entry<String, String> ans : answerValueDictFromURL.entrySet()) {
       AnswerEntity answer = new AnswerEntity(ans.getKey(), Boolean.valueOf(ans.getValue()));
       this.answerValueDictParsed.add(answer);
     }
@@ -22,6 +31,14 @@ public class QuizEntity {
 
   public void setQuestionText(String _questionText) {
     this.questionText = _questionText;
+  }
+
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
   }
 
   public ArrayList<AnswerEntity> getAnswers() {

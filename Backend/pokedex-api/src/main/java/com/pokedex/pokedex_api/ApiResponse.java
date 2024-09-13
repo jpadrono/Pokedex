@@ -1,6 +1,7 @@
 package com.pokedex.pokedex_api;
 
 public class ApiResponse<T> {
+
     private String message; // Novo campo para a mensagem
     private T data;
 
@@ -29,4 +30,10 @@ public class ApiResponse<T> {
     public void setData(T data) {
         this.data = data;
     }
+
+    @Override
+    public String toString() {
+        return "ApiResponse [message=" + message + ", data=" + data + "]";
+    }
+
 }
