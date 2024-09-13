@@ -1,4 +1,5 @@
 package com.pokedex.pokedex_api;
+
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,6 @@ import com.pokedex.pokedex_api.service.PokemonService;
 
 import jakarta.annotation.PostConstruct;
 
-
 @RestController
 public class MainController {
     @Autowired
@@ -23,14 +23,6 @@ public class MainController {
     @PostConstruct
     public void init() {
         pokemonService = new PokemonService(pokemonRepository);
-        }
-
-
-    @GetMapping("/Quiz") // http://localhost:8080/Quiz
-    public QuizEntity getMethodName(@RequestParam String question, @RequestParam Map<String, String> answerValueDict) {
-        answerValueDict.remove("question");
-        QuizEntity quiz = new QuizEntity(question, answerValueDict);
-        return quiz;
     }
 
     @GetMapping("/pokedex") // http://localhost:8080/pokedex
@@ -38,11 +30,10 @@ public class MainController {
         return pokemonRepository.findAll();
     }
 
-   @GetMapping("/pokedex/id/{id}") // http://localhost:8080/pokedex/2
-   public PokemonEntity findPokemonById(@PathVariable("id") Integer id) {
+    @GetMapping("/pokedex/id/{id}") // http://localhost:8080/pokedex/2
+    public PokemonEntity findPokemonById(@PathVariable("id") Integer id) {
         return pokemonRepository.findById(id).orElse(null);
     }
-   
 
     @GetMapping("/pokedex/name/{name}") // http://localhost:8080/pokedex/ivysaur
     public Iterable<PokemonEntity> findPokemonByName(@PathVariable("name") String name) {
