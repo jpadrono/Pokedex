@@ -1,25 +1,45 @@
 package com.pokedex.pokedex_api.controllers;
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.pokedex.pokedex_api.entities.PokemonEntity;
 import com.pokedex.pokedex_api.repository.PokemonRepository;
 import com.pokedex.pokedex_api.service.PokemonService;
 
+import jakarta.annotation.PostConstruct;
+
+@RestController
 public class PokedexController {
 
-    private ArrayList<PokemonEntity> pokedex = new ArrayList<>();
+    @Autowired
     private PokemonRepository pokemonRepository;
     private PokemonService pokemonService;
     
-    @Autowired
-    public PokedexController(PokemonRepository pokemonRepository, PokemonService pokemonService) {
-        this.pokemonRepository = pokemonRepository;
-        this.pokemonService = pokemonService;
-
-        //Pego os Pokemons da pokeAPI e coloco no banco de dados
-        for(int i=1; i<152; i++){
-            pokemonService= new PokemonService(pokemonRepository);
+    @PostConstruct
+    public void init() {
+        pokemonService = new PokemonService(pokemonRepository);
+        for(int i=1; i<152;i++)
+        {
             pokemonService.createPokemon(i);
         }
+        
+    }
+
+    @GetMapping("/pokedex") // http://localhost:8080/pokedex
+    public Iterable<PokemonEntity> getAllUsers() {
+        return pokemonRepository.findAll();
+    }
+
+    @GetMapping("/pokedex/id/{id}") // http://localhost:8080/pokedex/2
+    public PokemonEntity findPokemonById(@PathVariable("id") Integer id) {
+        return pokemonRepository.findById(id).orElse(null);
+    }
+
+    @GetMapping("/pokedex/name/{name}") // http://localhost:8080/pokedex/ivysaur
+    public Iterable<PokemonEntity> findPokemonByName(@PathVariable("name") String name) {
+        return pokemonRepository.findByName(name);
     }
 }

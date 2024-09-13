@@ -23,7 +23,6 @@ public class PokemonService {
 
     public void createPokemon(Integer id) {
         pokemonRepository.save(pokeApiService.getPokemon(id));
-        //return  pokeApiService.getPokemon(id);
     }
 
 }
