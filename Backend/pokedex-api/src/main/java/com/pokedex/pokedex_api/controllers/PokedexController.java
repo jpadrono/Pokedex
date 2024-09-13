@@ -1,42 +1,25 @@
 package com.pokedex.pokedex_api.controllers;
-
 import java.util.ArrayList;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import com.pokedex.pokedex_api.entities.PokemonEntity;
+import com.pokedex.pokedex_api.repository.PokemonRepository;
+import com.pokedex.pokedex_api.service.PokemonService;
 
 public class PokedexController {
+
     private ArrayList<PokemonEntity> pokedex = new ArrayList<>();
+    private PokemonRepository pokemonRepository;
+    private PokemonService pokemonService;
+    
+    @Autowired
+    public PokedexController(PokemonRepository pokemonRepository, PokemonService pokemonService) {
+        this.pokemonRepository = pokemonRepository;
+        this.pokemonService = pokemonService;
 
-    public PokedexController() {
-        // Essa parte pegamos os dados do pokeApi, por enquanto só vou fazer com 2
-        // exemplos
-        PokemonEntity pokemon_1 = new PokemonEntity("Bulbasaur", 1);
-        PokemonEntity pokemon_2 = new PokemonEntity("Ivysaur", 2);
-        pokedex.add(pokemon_1);
-        pokedex.add(pokemon_2);
-    }
-
-    public ArrayList<PokemonEntity> getAll() {
-        return pokedex;
-    }
-
-    public PokemonEntity getPokemonById(Integer id) {
-
-        for (PokemonEntity p : pokedex) {
-            if (p.getId().equals(id)) {
-                return p;
-            }
+        //Pego os Pokemons da pokeAPI e coloco no banco de dados
+        for(int i=1; i<152; i++){
+            pokemonService= new PokemonService(pokemonRepository);
+            pokemonService.createPokemon(i);
         }
-        return null;
-    }
-
-    public PokemonEntity getPokemonByName(String name) {
-
-        for (PokemonEntity p : pokedex) {
-            if (p.getName().equals(name)) {
-                return p;
-            }
-        }
-        return null;
     }
 }
