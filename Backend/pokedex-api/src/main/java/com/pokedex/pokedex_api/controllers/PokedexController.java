@@ -1,19 +1,9 @@
 package com.pokedex.pokedex_api.controllers;
-import java.util.ArrayList;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.pokedex.pokedex_api.entities.PokemonEntity;
-import com.pokedex.pokedex_api.repository.PokemonRepository;
-import com.pokedex.pokedex_api.service.PokemonService;
-
-import jakarta.annotation.PostConstruct;
 
 @RestController
 public class PokedexController {
-
+/* 
     @Autowired
     private PokemonRepository pokemonRepository;
     private PokemonService pokemonService;
@@ -42,4 +32,5 @@ public class PokedexController {
     public Iterable<PokemonEntity> findPokemonByName(@PathVariable("name") String name) {
         return pokemonRepository.findByName(name);
     }
+        */
 }
