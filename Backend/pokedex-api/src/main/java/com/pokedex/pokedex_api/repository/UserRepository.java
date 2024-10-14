@@ -9,4 +9,5 @@ import com.pokedex.pokedex_api.entities.UserEntity;
 public interface UserRepository extends CrudRepository<UserEntity, Integer> {
 
     Iterable<UserEntity> findByUsername(String username);
+    UserEntity findUserByUsernameAndPassword(String username, String password);
 }
