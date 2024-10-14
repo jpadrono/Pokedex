@@ -54,12 +54,12 @@ public class UserController {
     }
 
     @PostMapping("/user/login")
-    public ApiResponse<String> login(@RequestParam String username, @RequestParam String password) {
+    public ApiResponse<UserEntity> login(@RequestParam String username, @RequestParam String password) {
         return userService.login(username, password);
     }
     
     @PostMapping("/user/login1")
-    public ApiResponse<String> postMethodName(@RequestBody UserEntity usuario) {
+    public ApiResponse<UserEntity> postMethodName(@RequestBody UserEntity usuario) {
         return userService.login(usuario.getUsername(),usuario.getPassword());
     }
     

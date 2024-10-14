@@ -9,7 +9,6 @@ function enviarFormulario(event) {
 
     let username = document.getElementById("username").value;
     let password = document.getElementById("password").value;
-    let errorElement = document.createElement("p"); // Cria um elemento para mensagens de erro
 
     // Enviar requisição POST ao backend para login
     fetch(url, {
@@ -30,14 +29,19 @@ function enviarFormulario(event) {
         }
     })
     .then(data => {
-        // Redireciona para a nova tela após login bem-sucedido
-        window.location.href = "telaPrincipal.html"; // Altere para o caminho da sua nova tela
+        // Verifica se a resposta contém um usuário válido
+        if (data.data) {
+            // Login realizado com sucesso
+            window.location.href = "telaPrincipal.html"; // Altere para o caminho da sua nova tela
+        } else {
+            // Se não houver dados, significa que o login falhou
+            throw new Error(data.message || "Credenciais inválidas");
+        }
     })
     .catch(error => {
         // Exibe uma mensagem de erro
-        const errorElement = document.createElement("p");
+        const errorElement = document.getElementById("erro");
         errorElement.style.color = "red";
-        errorElement.innerText = "Erro ao fazer login: " + error.message;
-        document.body.appendChild(errorElement); // Adiciona a mensagem ao corpo do documento
+        errorElement.innerText = error.message; // Exibe a mensagem de erro no elemento com id "erro"
     });
 }
