@@ -1,6 +1,6 @@
-document
-  .getElementById("formCadastro")
-  .addEventListener("submit", function (event) {
+const url = "http://localhost:8080/user/create1"
+
+document.getElementById("formCadastro").addEventListener("submit", function (event) {
     event.preventDefault();
 
     const username = document.getElementById("username").value;
@@ -13,7 +13,7 @@ document
       return;
     }
     erroMsg.textContent = "";
-    fetch("http://localhost:8080/user/create1", {
+    fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

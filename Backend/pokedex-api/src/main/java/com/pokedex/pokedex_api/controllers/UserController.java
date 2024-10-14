@@ -1,7 +1,6 @@
 package com.pokedex.pokedex_api.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -58,6 +57,12 @@ public class UserController {
     public ApiResponse<String> login(@RequestParam String username, @RequestParam String password) {
         return userService.login(username, password);
     }
+    
+    @PostMapping("/user/login1")
+    public ApiResponse<String> postMethodName(@RequestBody UserEntity usuario) {
+        return userService.login(usuario.getUsername(),usuario.getPassword());
+    }
+    
 
     @DeleteMapping("/user/delete/{id}")
     public ApiResponse<UserEntity> deleteById(@PathVariable Integer id) {
