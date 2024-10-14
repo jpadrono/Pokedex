@@ -1,9 +1,8 @@
 package com.pokedex.pokedex_api.service;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 import java.util.Iterator;
-import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -86,5 +85,10 @@ public class UserService {
         else{
             return new ApiResponse<>(null, "Usuario não encontrado");
         }
+    }
+
+    public ApiResponse<UserEntity> criarUserWithBody(UserEntity usuario){
+        createUser(usuario.getUsername(), usuario.getPassword());
+        return new ApiResponse<>(null,"Usuario criado");
     }
 }
