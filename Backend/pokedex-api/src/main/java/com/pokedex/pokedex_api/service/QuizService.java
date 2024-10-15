@@ -1,7 +1,5 @@
 package com.pokedex.pokedex_api.service;
 
-import java.util.HashMap;
-
 import org.springframework.stereotype.Service;
 
 import com.pokedex.pokedex_api.ApiResponse;
@@ -27,14 +25,14 @@ public class QuizService {
         return new ApiResponse<>(quiz, "200");
     }
 
-    public ApiResponse<QuizEntity> createQuestion(String questionText, HashMap<String, String> answerValueDict) {
+    public ApiResponse<QuizEntity> createQuestion(String questionText, String answer) {
         Iterable<QuizEntity> quizTest = quizRepository.findByQuestionText(questionText);
         if (quizTest.iterator().hasNext()) {
             return new ApiResponse<>(null, "Pergunta já existe");
         }
 
-        quizRepository.save(new QuizEntity(questionText, answerValueDict));
-        return new ApiResponse<>(new QuizEntity(questionText, answerValueDict), "Pergunta adicionada com sucesso");
+        quizRepository.save(new QuizEntity(questionText, answer));
+        return new ApiResponse<>(new QuizEntity(questionText, answer), "Pergunta adicionada com sucesso");
     }
 
     public ApiResponse<QuizEntity> deleteQuestion(Integer id) {

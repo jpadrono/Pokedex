@@ -1,7 +1,5 @@
 package com.pokedex.pokedex_api.entities;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,17 +10,17 @@ import jakarta.persistence.Id;
 public class QuizEntity {
 
   private String questionText;
-  private final ArrayList<AnswerEntity> answerValueDictParsed = new ArrayList<>();
+  private String answer;
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   Integer id;
 
-  public QuizEntity(String questionText, HashMap<String, String> answerValueDictFromURL) {
+  public QuizEntity() {
+  }
+
+  public QuizEntity(String questionText, String answer) {
     this.questionText = questionText;
-    for (HashMap.Entry<String, String> ans : answerValueDictFromURL.entrySet()) {
-      AnswerEntity answer = new AnswerEntity(ans.getKey(), Boolean.valueOf(ans.getValue()));
-      this.answerValueDictParsed.add(answer);
-    }
+    this.answer = answer;
   }
 
   public String getQuestionText() {
@@ -41,16 +39,11 @@ public class QuizEntity {
     this.id = id;
   }
 
-  public ArrayList<AnswerEntity> getAnswers() {
-    return this.answerValueDictParsed;
+  public String getAnswer() {
+    return this.answer;
   }
 
-  public void addAnswers(String answerText, Boolean answerValue) {
-    AnswerEntity answer = new AnswerEntity(answerText, answerValue);
-    this.answerValueDictParsed.add(answer);
+  public void setAnswer(String _answer) {
+    this.answer = _answer;
   }
-
-  // Criar um remove answers
-
-  // Criar um clear answers
 }
