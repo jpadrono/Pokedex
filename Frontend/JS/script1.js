@@ -31,9 +31,15 @@ document.getElementById("formCadastro").addEventListener("submit", function (eve
         }
       })
       .then((data) => {
-        erroMsg.style.color = "green";
-        erroMsg.innerText = "Usuário criado com sucesso!";
-        document.getElementById("formCadastro").reset();
+        if (data.message == "Usuario já existe"){
+          erroMsg.style.color = "red";
+          erroMsg.innerText = "Usuário já existe";
+        }
+        else{
+          erroMsg.style.color = "green";
+          erroMsg.innerText = "Usuário criado com sucesso!";
+          document.getElementById("formCadastro").reset();
+        }
       })
       .catch((error) => {
         erroMsg.textContent = error.message;
