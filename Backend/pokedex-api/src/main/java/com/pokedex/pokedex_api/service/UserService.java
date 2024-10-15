@@ -1,9 +1,8 @@
 package com.pokedex.pokedex_api.service;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 import java.util.Iterator;
-import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -54,7 +53,7 @@ public class UserService {
     }
 
     // Função de login
-    public ApiResponse<String> login(String username, String password) {
+    public ApiResponse<UserEntity> login(String username, String password) {
         Iterable<UserEntity> userTest = userRepository.findByUsername(username);
         Iterator<UserEntity> iterator = userTest.iterator();
 
@@ -70,7 +69,7 @@ public class UserService {
             // Gerar token de autenticação
             gererateToken(user);
             userRepository.save(user);
-            return new ApiResponse<>(user.getAuthToken(), "Login realizado com sucesso");
+            return new ApiResponse<>(user, "Login realizado com sucesso");
 
         } else
             return new ApiResponse<>(null, "Usuário não encontrado");
@@ -86,5 +85,9 @@ public class UserService {
         else{
             return new ApiResponse<>(null, "Usuario não encontrado");
         }
+    }
+
+    public ApiResponse<UserEntity> criarUserWithBody(UserEntity usuario){
+        return createUser(usuario.getUsername(), usuario.getPassword());
     }
 }

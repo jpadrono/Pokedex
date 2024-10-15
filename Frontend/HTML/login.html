@@ -3,20 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href = "../CSS/style.css" rel = "stylesheet"/>
+    <title>Login</title>
+    <link href="../CSS/style.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
         <img src="../img/logo.png" alt="Logo Pokémon" class="customimg">
-        <p class="custom-font"><strong>Entre na sua conta do Clube de Treinadores de Pokémon</p>
-        <form method="POST" id="formCadastro" onsubmit="enviarFormulario(event)">
-            <input id = "username" type="text" placeholder="Nome de Usuário" required>
-            <input id = "password" type="password" placeholder="Senha" required>
+        <p class="custom-font"><strong>Entre na sua conta do Clube de Treinadores de Pokémon</strong></p>
+        <form id="formLogin" onsubmit="enviarFormulario(event)">
+            <input id="username" type="text" placeholder="Nome de Usuário" required>
+            <input id="password" type="password" placeholder="Senha" required>
             <button type="submit" class="enviar">Entrar</button>
             <p>Você não possui uma conta?</p>
-            <button id = "criar" type = "submit" class="criar" onclick="redirecionar()">Criar Conta</button>
+            <button type="button" id="criar" class="criar" onclick="criarConta()">Criar Conta</button>
+            <p id="erro" class="error"></p>
         </form>
     </div>
     <script src="../JS/script.js"></script>
