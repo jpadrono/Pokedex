@@ -20,11 +20,11 @@ public class PokedexController {
     @PostConstruct
     public void init() {
         pokemonService = new PokemonService(pokemonRepository);
-        for(int i=1; i<152;i++)
-        {
-            pokemonService.createPokemon(i);
+        if (pokemonRepository.count() == 0){
+            for(int i=1; i<152;i++){
+                pokemonService.createPokemon(i);
+            }
         }
-        
     }
 
     @GetMapping("/pokedex") // http://localhost:8080/pokedex
