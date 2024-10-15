@@ -88,7 +88,6 @@ public class UserService {
     }
 
     public ApiResponse<UserEntity> criarUserWithBody(UserEntity usuario){
-        createUser(usuario.getUsername(), usuario.getPassword());
-        return new ApiResponse<>(null,"Usuario criado");
+        return createUser(usuario.getUsername(), usuario.getPassword());
     }
 }
