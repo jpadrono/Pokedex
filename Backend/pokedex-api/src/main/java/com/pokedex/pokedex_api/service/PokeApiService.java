@@ -42,6 +42,25 @@ public class PokeApiService {
             }
         }
 
+        /*JsonNode spritesNode = jsonNode.get("sprites");
+        if (spritesNode != null) {
+            // Extrai a URL da sprite padrão da frente
+            JsonNode frontDefaultNode = spritesNode.get("front_default");
+            if (frontDefaultNode != null) {
+                String frontDefaultUrl = frontDefaultNode.asText();
+                pokemon.setImgUrl(frontDefaultUrl);
+            }}*/
+        if(id<10)
+        {
+            pokemon.setImgUrl("https://assets.pokemon.com/assets/cms2/img/pokedex/detail/00"+id+".png");
+        }
+        else if(id<100){
+            pokemon.setImgUrl("https://assets.pokemon.com/assets/cms2/img/pokedex/detail/0"+id+".png");
+        }
+        else{
+            pokemon.setImgUrl("https://assets.pokemon.com/assets/cms2/img/pokedex/detail/"+id+".png");
+        }
+
         List<Integer> statsValues = new ArrayList<>();
         JsonNode statsNode = jsonNode.get("stats");
         if (statsNode != null && statsNode.isArray()) {

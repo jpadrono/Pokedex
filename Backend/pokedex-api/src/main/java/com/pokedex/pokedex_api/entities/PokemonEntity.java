@@ -19,6 +19,8 @@ public class PokemonEntity {
     private ArrayList<String> evolves_to;
     private ArrayList<String> abilities;
     private String stats;
+    private String imgUrl;
+
 
     public PokemonEntity(String name, Integer id, Integer height, Integer weight) {
         this.name = name;
@@ -52,6 +54,14 @@ public class PokemonEntity {
 
     public void setTypes(String type) {
         types.add(type);
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     public ArrayList<String> getAbilities() {

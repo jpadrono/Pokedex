@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/styleTelaPokemon.css">
+    <title>Pokédex</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <button class="btn prev" onclick="previousPokemon()">
+                <span id="pokemon-anterior">Anterior</span>
+            </button>
+            <h1 id="pokemon-name">Nome #Id</h1>
+            <button class="btn next" onclick="nextPokemon()">
+                <span id="pokemon-proximo">Proximo</span>
+            </button>
+        </div>
+        <div class="image">
+        <img src="" alt="Imagem do Pokémon" class="pokemon-image" id="pokemon-image">
+        </div>
+        <div class="pokemon-info">
+            <div class="details" id="pokemon-details">
+                <div class="detail-item">
+                    <span>Height:</span> <span id="pokemon-height"></span>
+                </div>
+                <div class="detail-item">
+                    <span>Weight:</span> <span id="pokemon-weight"></span>
+                </div>
+                <div class="detail-item">
+                    <span>Evolves to:</span> <span id="pokemon-evolves-to"></span>
+                </div>
+                <div class="detail-item">
+                    <span>Abilities:</span> <span id="pokemon-abilities"></span>
+                </div>
+                <div class="detail-item">
+                    <span>Types:</span> <span id="pokemon-types"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../JS/telaPokemon.js"></script>
+</body>
+</html>
+
