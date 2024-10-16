@@ -1,7 +1,6 @@
 package com.pokedex.pokedex_api.entities;
 
 import java.util.ArrayList;
-//import java.util.HashMap;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -15,14 +14,16 @@ public class PokemonEntity {
 
     private Integer height;
     private Integer weight;
+    private String img;
     private ArrayList<String> types;
     private ArrayList<String> evolves_to;
     private ArrayList<String> abilities;
     private String stats;
 
-    public PokemonEntity(String name, Integer id, Integer height, Integer weight) {
+    public PokemonEntity(String name, Integer id, Integer height, Integer weight, String img) {
         this.name = name;
         this.id = id;
+        this.img = img;
         this.height = height;
         this.weight=weight;
         types = new ArrayList<>();
@@ -32,6 +33,14 @@ public class PokemonEntity {
 
     public String getName() {
         return name;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public void setName(String name) {
