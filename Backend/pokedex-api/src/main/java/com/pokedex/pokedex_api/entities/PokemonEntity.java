@@ -31,6 +31,8 @@ private String species;
         evolves_to = new ArrayList<>();
         abilities= new ArrayList<>();
     }
+    public PokemonEntity() {
+    }
 
     public String getName() {
         return name;

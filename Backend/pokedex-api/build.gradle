@@ -29,6 +29,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
     // implementation("org.springframework.boot:spring-boot-starter-security")  // Spring Security   --> será usado futurameente para impedir acesso sem token
     implementation("org.springframework.security:spring-security-crypto")  // BCrypt para criptografia de senhas
+	testImplementation 'org.springframework.security:spring-security-test'
 }
 
 tasks.named('test') {
