@@ -23,14 +23,14 @@ const typeColors = {
     flying: '#A890F0'
 };
 
-let pokemons = []; // Array para armazenar os Pokémon vindos da API
+let pokemons = []; 
 
-// Função para criar os cards de Pokémon
+
 function createPokemonCard(pokemon) {
     const card = document.createElement('div');
     card.classList.add('pokemon-card');
 
-    // Criar os elementos para os tipos
+
     const typesHTML = pokemon.types.map(type => {
         const color = typeColors[type] || '#A8A878'; 
         return `<span class="pokemon-type" style="background-color: ${color};">${type}</span>`;
