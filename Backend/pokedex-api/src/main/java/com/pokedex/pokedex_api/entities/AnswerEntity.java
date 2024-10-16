@@ -1,19 +1,23 @@
 package com.pokedex.pokedex_api.entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
 public class AnswerEntity {
 
     private String answerText;
-    private Boolean answerValue;
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     Integer id;
 
-    public AnswerEntity(String answerText, Boolean answerValue) {
+    public AnswerEntity() {
+    }
+
+    public AnswerEntity(String answerText) {
         this.answerText = answerText;
-        this.answerValue = answerValue;
     }
 
     public String getAnswerText() {
@@ -23,15 +27,6 @@ public class AnswerEntity {
     public void setAnswerText(String answerText) {
         this.answerText = answerText;
     }
-
-    public Boolean getValue() {
-        return this.answerValue;
-    }
-
-    public void setValue(Boolean answerValue) {
-        this.answerValue = answerValue;
-    }
-
     public Integer getId() {
         return id;
     }
