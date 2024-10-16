@@ -54,7 +54,7 @@ body {
     object-fit: contain;
 }
 
-.details {
+/*.details {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
@@ -69,6 +69,29 @@ body {
 
 .detail-item span:first-child {
     font-weight: bold;
+}
+*/
+.detail-item {
+    background-color: #e9ecef;
+    border-radius: 8px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.detail-item i {
+    font-size: 20px;
+    color: #333;
+}
+
+.detail-item span {
+    font-size: 14px;
+}
+
+.detail-item span.value {
+    font-weight: bold;
+    font-size: 16px;
 }
 
 .btn {
