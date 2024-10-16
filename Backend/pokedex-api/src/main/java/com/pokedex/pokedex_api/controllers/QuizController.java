@@ -1,6 +1,5 @@
 package com.pokedex.pokedex_api.controllers;
 
-import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -31,9 +30,8 @@ public class QuizController {
     }
 
     @PostMapping("/quiz/create")
-    public ApiResponse<QuizEntity> createQuestion(@RequestParam String questionText,
-            @RequestParam HashMap<String, String> answerValueDict) {
-        return quizService.createQuestion(questionText, answerValueDict);
+    public ApiResponse<QuizEntity> createQuestion(@RequestParam String questionText, @RequestParam String answer) {
+        return quizService.createQuestion(questionText, answer);
     }
 
     @GetMapping("/quiz/all")
