@@ -32,7 +32,7 @@ function updatePokemonInfo(pokemon) {
     document.getElementById("pokemon-evolves-to").textContent = pokemon.evolves_to.join(', ');
     document.getElementById("pokemon-types").textContent = pokemon.types.join(', ');
     const pokemonImage = document.querySelector(".pokemon-image");
-    pokemonImage.src = pokemon.imgUrl;
+    pokemonImage.src = pokemon.img;
     pokemonImage.alt = pokemon.name;
     console.log('Informações do Pokémon atualizadas na página.');
 }
