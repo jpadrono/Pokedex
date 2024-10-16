@@ -7,7 +7,7 @@ document.getElementById("formCadastro").addEventListener("submit", function (eve
     const password = document.getElementById("password").value;
     const cpassword = document.getElementById("cpassword").value;
     const erroMsg = document.getElementById("erro");
-
+    erroMsg.style.color = "red";
     if (password !== cpassword) {
       erroMsg.textContent = "As senhas não coincidem!";
       return;
@@ -27,12 +27,12 @@ document.getElementById("formCadastro").addEventListener("submit", function (eve
         if (response.ok) {
           return response.json();
         } else {
-          throw new Error("Erro ao cadastrar. Por favor, tente novamente.");
+          erroMsg.innerText = "Falha na conexão";
+
         }
       })
       .then((data) => {
         if (data.message == "Usuario já existe"){
-          erroMsg.style.color = "red";
           erroMsg.innerText = "Usuário já existe";
         }
         else{
@@ -42,7 +42,7 @@ document.getElementById("formCadastro").addEventListener("submit", function (eve
         }
       })
       .catch((error) => {
-        erroMsg.textContent = error.message;
+        erroMsg.textContent = "Falha na conexão com a API";
         console.error("Erro na requisição:", error);
       });
   });
