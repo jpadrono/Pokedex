@@ -67,5 +67,6 @@ public class UserController {
     @DeleteMapping("/user/delete/{id}")
     public ApiResponse<UserEntity> deleteById(@PathVariable Integer id) {
         return userService.deleteUser(id);
-    }
+    }  
+    
 }

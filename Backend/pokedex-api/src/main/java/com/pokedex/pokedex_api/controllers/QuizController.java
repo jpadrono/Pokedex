@@ -2,6 +2,7 @@ package com.pokedex.pokedex_api.controllers;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import com.pokedex.pokedex_api.service.QuizService;
 import jakarta.annotation.PostConstruct;
 
 @RestController
+@CrossOrigin(origins = "http://127.0.0.1:5500")
 public class QuizController {
     @Autowired
     private QuizRepository quizRepository;

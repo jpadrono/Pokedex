@@ -31,6 +31,7 @@ public class PokedexController {
 
     @GetMapping("/pokedex") // http://localhost:8080/pokedex
     public Iterable<PokemonEntity> getAllUsers() {
+        System.out.println("chamada da pokedex");
         return pokemonRepository.findAll();
     }
 
@@ -39,7 +40,7 @@ public class PokedexController {
         return pokemonRepository.findById(id).orElse(null);
     }
 
-    @GetMapping("/pokedex/name/{name}") // http://localhost:8080/pokedex/ivysaur
+    @GetMapping("/pokedex/name/{name}") // http://localhost:8080/pokedex/name/ivysaur
     public Iterable<PokemonEntity> findPokemonByName(@PathVariable("name") String name) {
         return pokemonRepository.findByName(name);
     }
