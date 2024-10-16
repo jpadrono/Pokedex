@@ -3,9 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+    <title>Pokedex</title>
+    <link rel="stylesheet" href="../CSS/styleTelaPrincipal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 <body>
-    <p>CU</p>
+
+    <!-- Header com a barra de pesquisa -->
+    <header>
+        <div class="search-bar">
+            <h1>Pokedex</h1>
+            <input type="text" id="search-input" placeholder="Name or Number">
+            <button id="search-btn" class="btn btn-primary"><i class="bi bi-search"></i></button>
+            <p>Search for a Pokémon by name or number.</p>
+        </div>
+    </header>
+
+    <!-- Div com botão e cards -->
+    <div class="content">
+        <div class="pokemon-list" id="pokemon-list">
+            <!-- Os cards de Pokémon serão gerados aqui -->
+        </div>
+    </div>
+
+    <script src="../JS/scriptTelaPrincipal.js"></script>
 </body>
 </html>
