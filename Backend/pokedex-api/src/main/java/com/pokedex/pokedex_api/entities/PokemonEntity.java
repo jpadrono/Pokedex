@@ -7,8 +7,9 @@ import jakarta.persistence.Id;
 
 @Entity
 public class PokemonEntity {
-    public PokemonEntity(){}
-    private String name;
+private String name;
+private String species;
+
     @Id
     Integer id;
 
@@ -29,6 +30,8 @@ public class PokemonEntity {
         types = new ArrayList<>();
         evolves_to = new ArrayList<>();
         abilities= new ArrayList<>();
+    }
+    public PokemonEntity() {
     }
 
     public String getName() {
