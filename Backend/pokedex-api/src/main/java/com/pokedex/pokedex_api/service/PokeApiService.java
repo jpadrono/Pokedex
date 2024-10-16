@@ -20,7 +20,17 @@ public class PokeApiService {
 
     public PokemonEntity getPokemon(Integer id) {
         String url = "https://pokeapi.co/api/v2/pokemon/" + id;
-        
+        String img;
+        if (id >= 1 && id <= 9){
+            img = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/00"+id+".png";
+        }
+        else if (id>= 10 && id <= 99)
+        {
+            img = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/0"+id+".png";
+        }
+        else{
+            img = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/"+id+".png";
+        }
         // Faz a requisição GET e recebe um JsonNode
         JsonNode jsonNode = restTemplate.getForObject(url, JsonNode.class);
         
@@ -30,7 +40,7 @@ public class PokeApiService {
         Integer weight=jsonNode.get("weight").asInt();
         
         //Criando o pokemon
-        PokemonEntity pokemon= new PokemonEntity(name, id, height, weight);
+        PokemonEntity pokemon= new PokemonEntity(name, id, height, weight, img);
 
         JsonNode abilitiesNode = jsonNode.get("abilities");
         if (abilitiesNode != null && abilitiesNode.isArray()) {
