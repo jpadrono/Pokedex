@@ -28,6 +28,7 @@ let pokemons = [];
 
 function createPokemonCard(pokemon) {
     const card = document.createElement('div');
+    card.setAttribute('id', pokemon.id);
     card.classList.add('pokemon-card');
 
 
@@ -44,7 +45,8 @@ function createPokemonCard(pokemon) {
     `;
 
     card.addEventListener('click', () => {
-        window.location.href = `${pokemon.name.toLowerCase()}.html`;
+        localStorage.setItem('currentPokemonId', pokemon.id);
+        window.location.href = "telaPokemon.html";
     });
 
     return card;
