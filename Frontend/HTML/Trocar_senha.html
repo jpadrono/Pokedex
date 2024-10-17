@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="../JS/script_perfil.js" defer></script> <!-- 'defer' garante que o script carregue após o HTML -->
-    <title>Perfil</title>
+    <title>Alterar senha</title>
     
     <link href="../CSS/style.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -12,9 +12,11 @@
 <body>
     <div class="container">
         <img src="../img/foto_default.jpg" alt="Foto" class="foto" id="usuario-foto" style="border-radius: 5%;">
-        <button type="submit" id="alterar_foto" style="margin-top: 5px;">Alterar Foto</button>
         <p id="usuario-name" class="custom-font">NOME USUARIO</p>
-        <button type="submit" id="ir_para_alt_senha" class="enviar" >Alterar senha</button>
+        <input id = "passrword" type="password" placeholder="Senha" required>
+        <input id = "new-password" type="password" placeholder="Nova senha" required>
+        <input id = "new-cpassword" type="password" placeholder="Confirme sua nova senha" required>
+        <button type="submit" class="enviar" id="alterar">Alterar senha</button>
     </div>
 </body>
 </html>

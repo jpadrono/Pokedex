@@ -33,6 +33,15 @@ public class UserService {
         return new ApiResponse<>(users, "200");
     }
 
+    public ApiResponse<UserEntity> findById(Integer id) {
+        Optional<UserEntity> user = userRepository.findById(id);
+        if (user.isPresent()) {
+            return new ApiResponse<>(user.get(), "200");
+        } else {
+            return new ApiResponse<>(null, "Usuário não encontrado");
+        }
+    }
+
     public ApiResponse<UserEntity> createUser(String username, String password) {
         Iterable<UserEntity> userTest = userRepository.findByUsername(username);
         if (userTest.iterator().hasNext()) {

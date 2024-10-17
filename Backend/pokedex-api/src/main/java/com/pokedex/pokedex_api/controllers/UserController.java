@@ -53,6 +53,12 @@ public class UserController {
         return userService.findByUsername(username);
     }
 
+    @GetMapping("/user/id/{id}")
+    public ApiResponse<UserEntity> findById(@PathVariable Integer id) {
+        return userService.findById(id);
+    }
+    
+
     @PostMapping("/user/login")
     public ApiResponse<UserEntity> login(@RequestParam String username, @RequestParam String password) {
         return userService.login(username, password);
@@ -67,6 +73,7 @@ public class UserController {
     @DeleteMapping("/user/delete/{id}")
     public ApiResponse<UserEntity> deleteById(@PathVariable Integer id) {
         return userService.deleteUser(id);
-    }  
+    }
+    
     
 }
