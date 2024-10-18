@@ -13,6 +13,32 @@ body {
     background-position: center center;
 }
 
+.back {
+    background-color: #e41818; /* Cor de fundo */
+    border: #e41818;
+    color: rgb(255, 255, 255); /* Cor do ícone */
+    padding: 0; /* Remove o padding */
+    border-radius: 50%; /* Torna o botão redondo */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centraliza o ícone */
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 40px; /* Tamanho do botão */
+    height: 40px; /* Tamanho do botão */
+    position: absolute; /* Permite que o botão fique no canto */
+    top: 10px; /* Distância do topo */
+    left: 10px; /* Distância da esquerda */
+}
+
+.back:hover {
+    background-color: #c71616; /* Cor de fundo ao passar o mouse */
+}
+
+.back i {
+    font-size: 20px; /* Tamanho do ícone */
+}
+
 .container {
     width: 50%;
     height: 80%;
@@ -29,16 +55,38 @@ body {
     align-items: center;
 }
 
-.header h1 {
-    font-size: 24px;
-    margin: 0;
-    text-transform: capitalize;
-    margin-bottom: 20px;
+.nome_e_favorito {
+    display: flex;               /* Ativa o flexbox para o título e o botão de favorito */
+    align-items: center;         /* Centraliza verticalmente os itens dentro deste div */
 }
 
+h1 {
+    text-transform: capitalize;
+    margin-bottom: 20px;
+    margin: 0;                   /* Remove margens do h1 para melhor alinhamento */
+    font-size: 24px;             /* Tamanho da fonte do título */
+}
 .pokemon-info {
     text-align: center;
     margin-top: 20px;
+}
+
+.favorite-button {
+    background-color: transparent; /* Inicialmente transparente */
+    height: 25px;
+    width: 35px;
+    border: 2px solid black;   /* Borda vermelha */
+    border-radius: 10%;           /* Faz o botão ser circular */
+    margin-right: 10px;
+    cursor: pointer;              /* Cursor como mãozinha */
+    transition: background-color 0.3s; /* Transições suaves */
+}
+
+.favorite-button i{
+    font-size: 16px;
+}
+.favorite-button.favorited i {
+    font-size: 18px;
 }
 
 .image {
@@ -107,7 +155,7 @@ body {
 }
 
 .btn:hover {
-    background-color: #0056b3; /* Cor de fundo ao passar o mouse */
+    background-color: #c71616; /* Cor de fundo ao passar o mouse */
 }
 
 .header {

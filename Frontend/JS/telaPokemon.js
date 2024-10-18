@@ -48,6 +48,26 @@ function previousPokemon() {
     }
 }
 
+function goBack() {
+    window.location.href = "telaPrincipal.html";
+}
+
+function toggleFavorite() {
+    const button = document.getElementById("favorite-button");
+    const heartIcon = document.getElementById("heart-icon");
+    button.classList.toggle("favorited"); // Alterna a classe 'favorited'
+    
+    // Muda a classe do ícone de coração
+    if (button.classList.contains("favorited")) {
+        heartIcon.classList.remove("fa-regular"); // Remove a classe regular
+        heartIcon.classList.add("fa-solid");       // Adiciona a classe sólida
+    } else {
+        heartIcon.classList.remove("fa-solid");     // Remove a classe sólida
+        heartIcon.classList.add("fa-regular");      // Adiciona a classe regular
+    }
+}
+
+
 
 document.addEventListener("DOMContentLoaded", () => {
     console.log('DOM totalmente carregado. Carregando Pokémon inicial...');

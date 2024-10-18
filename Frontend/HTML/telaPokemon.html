@@ -8,18 +8,27 @@
     <title>Pokédex</title>
 </head>
 <body>
+    <button class="back" onclick="goBack()">
+        <i class="fas fa-times"></i> <!-- Ícone "x" -->
+    </button>
+    
     <div class="container">
         <div class="header">
             <button class="btn prev" onclick="previousPokemon()">
                 <span id="pokemon-anterior">Anterior</span>
             </button>
-            <h1 id="pokemon-name">Nome #Id</h1>
+            <div class="nome_e_favorito">
+                <button id="favorite-button" class="favorite-button" onclick="toggleFavorite()">
+                    <i id="heart-icon" class="fa-regular fa-heart"></i>
+                </button>
+                <h1 id="pokemon-name">Nome #Id</h1>
+            </div>
             <button class="btn next" onclick="nextPokemon()">
                 <span id="pokemon-proximo">Proximo</span>
             </button>
         </div>
-        <div class="image">
-        <img src="" alt="Imagem do Pokémon" class="pokemon-image" id="pokemon-image">
+        <div class="image">                      
+            <img src="" alt="Imagem do Pokémon" class="pokemon-image" id="pokemon-image">        
         </div>
         <div class="pokemon-info">
             <div class="details" id="pokemon-details">
