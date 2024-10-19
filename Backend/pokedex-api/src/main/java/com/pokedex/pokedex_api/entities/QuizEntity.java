@@ -1,49 +1,61 @@
 package com.pokedex.pokedex_api.entities;
 
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class QuizEntity {
-
-  private String questionText;
-  private String answer;
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  Integer id;
+  private long id;
+  
+  @ManyToMany
+  @JoinTable(
+    name = "quiz_pokemon_alternatives",
+    joinColumns = @JoinColumn(name = "quiz_id"),
+    inverseJoinColumns = @JoinColumn(name = "pokemon_id")
+    )
+  private List<PokemonEntity> alternatives;  
+    
+  private String imgUrl;
+  private int correctAnswerId;  
 
-  public QuizEntity() {
+  public QuizEntity(){}
+
+  public QuizEntity(String imgUrl, List<PokemonEntity> alternatives, int correctAnswerId) {
+      this.imgUrl = imgUrl;
+      this.alternatives = alternatives;
+      this.correctAnswerId = correctAnswerId;
   }
 
-  public QuizEntity(String questionText, String answer) {
-    this.questionText = questionText;
-    this.answer = answer;
+  public int getCorrectAnswerId() {
+    return this.correctAnswerId;
   }
 
-  public String getQuestionText() {
-    return this.questionText;
+  public void setCorrectAnswerId(int id) {
+    this.correctAnswerId = id;
   }
 
-  public void setQuestionText(String _questionText) {
-    this.questionText = _questionText;
+  public String getimgUrl() {
+    return imgUrl;
   }
 
-  public Integer getId() {
-    return id;
+  public void setId(String imgUrl) {
+    this.imgUrl = imgUrl;
   }
 
-  public void setId(Integer id) {
-    this.id = id;
+  public List<PokemonEntity> getAlternatives() {
+    return this.alternatives;
   }
 
-  public String getAnswer() {
-    return this.answer;
-  }
-
-  public void setAnswer(String _answer) {
-    this.answer = _answer;
+  public void setAlternatives(List<PokemonEntity> alternatives) {
+    this.alternatives = alternatives;
   }
 }

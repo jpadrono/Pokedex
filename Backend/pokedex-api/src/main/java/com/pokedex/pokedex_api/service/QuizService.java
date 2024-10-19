@@ -1,46 +1,65 @@
 package com.pokedex.pokedex_api.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.pokedex.pokedex_api.ApiResponse;
 import com.pokedex.pokedex_api.entities.QuizEntity;
+import com.pokedex.pokedex_api.entities.PokemonEntity;
 import com.pokedex.pokedex_api.repository.QuizRepository;
+import com.pokedex.pokedex_api.repository.PokemonRepository;
+import jakarta.annotation.PostConstruct;
+
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
 
 @Service
 public class QuizService {
 
-    final private QuizRepository quizRepository;
+    @Autowired
+    private QuizRepository quizRepository;
+    
+    @Autowired
+    private PokemonRepository pokemonRepository;
 
-    public QuizService(QuizRepository quizRepository) {
-        this.quizRepository = quizRepository;
-    }
+    @PostConstruct
+    public void initializeQuizData() {
+        // Verifica se já existem registros na tabela do Quiz
+        if (quizRepository.count() == 0) {
+            // Obtém todos os Pokémons do banco de dados
+            List<PokemonEntity> allPokemons = pokemonRepository.findAll();
 
-    public ApiResponse<Iterable<QuizEntity>> findAll() {
-        Iterable<QuizEntity> quizAll = quizRepository.findAll();
-        return new ApiResponse<>(quizAll, "200");
-    }
-
-    public ApiResponse<Iterable<QuizEntity>> findByQuestionText(String questionText) {
-        Iterable<QuizEntity> quiz = quizRepository.findByQuestionText(questionText);
-        return new ApiResponse<>(quiz, "200");
-    }
-
-    public ApiResponse<QuizEntity> createQuestion(String questionText, String answer) {
-        Iterable<QuizEntity> quizTest = quizRepository.findByQuestionText(questionText);
-        if (quizTest.iterator().hasNext()) {
-            return new ApiResponse<>(null, "Pergunta já existe");
-        }
-
-        quizRepository.save(new QuizEntity(questionText, answer));
-        return new ApiResponse<>(new QuizEntity(questionText, answer), "Pergunta adicionada com sucesso");
-    }
-
-    public ApiResponse<QuizEntity> deleteQuestion(Integer id) {
-        if (quizRepository.existsById(id)) {
-            quizRepository.deleteById(id);
-            return new ApiResponse<>(null, "Pergunta Deletada");
+            // Cria perguntas de quiz para cada Pokémon
+            for (PokemonEntity correctPokemon : allPokemons) {
+                createQuizQuestion(correctPokemon, allPokemons);
+            }
         } else {
-            return new ApiResponse<>(null, "Usuario não encontrado");
+            // Tabela já está preenchida, não faz nada
+            System.out.println("Tabela de quiz já está preenchida.");
         }
+    }
+
+    private void createQuizQuestion(PokemonEntity correctPokemon, List<PokemonEntity> allPokemons) {
+        
+        System.out.println("Criando pergunta para Pokémon: " + correctPokemon.getName());
+        // Seleciona 3 Pokémons aleatórios como alternativas
+        List<PokemonEntity> alternativePokemons = new ArrayList<>();
+
+        // Adiciona o Pokémon correto como a resposta
+        alternativePokemons.add(correctPokemon);
+        
+        // Seleciona 2 Pokémons aleatórios distintos para completar as alternativas
+        while (alternativePokemons.size() < 4) {
+            PokemonEntity newAlternative = pokemonRepository.findRandomPokemon();
+            if (!alternativePokemons.contains(newAlternative)) {
+                alternativePokemons.add(newAlternative);
+            }
+        }
+
+        // Embaralha as alternativas
+        Collections.shuffle(alternativePokemons);
+
+        // Cria e salva a pergunta
+        QuizEntity quiz = new QuizEntity(correctPokemon.getImgUrl(), alternativePokemons, correctPokemon.getId());
+        quizRepository.save(quiz);
     }
 }
