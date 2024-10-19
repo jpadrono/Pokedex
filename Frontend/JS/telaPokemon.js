@@ -23,12 +23,19 @@ function loadPokemon(id) {
 
 
 function updatePokemonInfo(pokemon) {
+    const stats = parseStats(pokemon.stats);
     document.getElementById("pokemon-name").textContent = `${pokemon.name} #${String(pokemon.id).padStart(4, '0')}`;
     document.getElementById("pokemon-height").textContent = `${pokemon.height / 10} m`; 
     document.getElementById("pokemon-weight").textContent = `${pokemon.weight / 10} kg`; 
     document.getElementById("pokemon-abilities").textContent = pokemon.abilities.join(', ');
     document.getElementById("pokemon-evolves-to").textContent = pokemon.evolves_to.join(', ');
     document.getElementById("pokemon-types").textContent = pokemon.types.join(', ');
+    document.getElementById("hp-value").textContent = stats.hp;
+    document.getElementById("attack-value").textContent = stats.attack || 0;
+    document.getElementById("defense-value").textContent = stats.defense || 0;
+    document.getElementById("special-attack-value").textContent = stats['special_attack'] || 0;
+    document.getElementById("special-defense-value").textContent = stats['special_defense'] || 0;
+    document.getElementById("speed-value").textContent = stats.speed || 0;
     const pokemonImage = document.querySelector(".pokemon-image");
     pokemonImage.src = pokemon.img;
     pokemonImage.alt = pokemon.name;
@@ -67,7 +74,21 @@ function toggleFavorite() {
     }
 }
 
+function parseStats(statsString) {
+    // Cria um objeto para armazenar os stats extraídos
+    const stats = {};
 
+    // Divide a string em partes usando a vírgula como separador
+    const parts = statsString.split(', ');
+
+    // Itera por cada parte e separa a chave (stat) e o valor
+    parts.forEach(part => {
+        const [key, value] = part.split(': ');
+        stats[key.trim()] = parseInt(value.trim());
+    });
+
+    return stats;
+}
 
 document.addEventListener("DOMContentLoaded", () => {
     console.log('DOM totalmente carregado. Carregando Pokémon inicial...');
