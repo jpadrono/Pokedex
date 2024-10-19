@@ -1,4 +1,5 @@
-// ID inicial do Pokémon a ser carregado
+// ID inicial do Pokémon a ser carregado 
+// !!! não precisa desses comentários pois as variáveis estão com bons nomes !!!
 let currentPokemonId = 2;
 
 // URL base da API (ajuste conforme necessário)
