@@ -96,4 +96,42 @@ public class UserService {
     public ApiResponse<UserEntity> criarUserWithBody(UserEntity usuario) {
         return createUser(usuario.getUsername(), usuario.getPassword());
     }
+
+    /*public ApiResponse<UserEntity> updateUser(Integer id, UserEntity user) {
+        Optional<UserEntity> existingUser = userRepository.findById(id); // Use o parâmetro id aqui
+        if (existingUser.isPresent()) {
+            UserEntity userToUpdate = existingUser.get();
+    
+            // Atualize somente a lista de favoritos
+            userToUpdate.setListaFavoritos(user.getListaFavoritos());
+    
+            // Mantenha o username e password existentes
+            // Não atualize username e password se eles forem null
+            if (user.getUsername() != null) {
+                userToUpdate.setUsername(user.getUsername());
+            }
+            if (user.getPassword() != null) {
+                userToUpdate.setPassword(user.getPassword());
+            }
+    
+            userRepository.save(userToUpdate); // Salva as mudanças no banco de dados
+            return new ApiResponse<>(userToUpdate, "Usuário atualizado com sucesso!");
+        } else {
+            return new ApiResponse<>(null, "Usuário não encontrado.");
+        }
+    }
+    */
+    public ApiResponse<UserEntity> updateUser(Integer id, UserEntity user) {
+        Optional<UserEntity> existingUser = userRepository.findById(id);
+        if (existingUser.isPresent()) {
+            UserEntity userToUpdate = existingUser.get();
+            // Atualize somente a lista de favoritos
+            userToUpdate.setListaFavoritos(user.getListaFavoritos()); // atualizando a listaFavoritos
+            userRepository.save(userToUpdate); // Salva as mudanças no banco de dados
+            return new ApiResponse<>(userToUpdate, "Usuário atualizado com sucesso!");
+        } else {
+            return new ApiResponse<>(null, "Usuário não encontrado.");
+        }
+    }
+    
 }

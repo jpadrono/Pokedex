@@ -9,7 +9,6 @@ function enviarFormulario(event) {
 
   let username = document.getElementById("username").value;
   let password = document.getElementById("password").value;
-
   fetch(url, {
     method: "POST",
     headers: {
@@ -29,6 +28,7 @@ function enviarFormulario(event) {
     })
     .then((data) => {
       if (data.data) {
+        localStorage.setItem('currentUserId', data.data.id); 
         window.location.href = "telaPrincipal.html";
       } else {
         throw new Error(data.message || "Credenciais inválidas");
