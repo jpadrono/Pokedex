@@ -1,4 +1,4 @@
-const usuarioteste = 603; //mudar para localStorage.getItem
+const usuarioteste = 552; //mudar para localStorage.getItem
 
 // URL base da API (ajuste conforme necessário)
 const API_URL = "http://localhost:8080/user/id/"; // Corrigido para corresponder à rota correta

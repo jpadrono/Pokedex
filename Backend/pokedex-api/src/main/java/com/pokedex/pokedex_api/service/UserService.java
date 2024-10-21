@@ -2,9 +2,8 @@ package com.pokedex.pokedex_api.service;
 
 import java.time.LocalDateTime;
 import java.util.Iterator;
-import java.util.UUID;
 import java.util.Optional;
-
+import java.util.UUID;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -42,7 +41,7 @@ public class UserService {
         }
     }
 
-    public ApiResponse<UserEntity> changePassword(Integer id, String newPassword) {
+    public ApiResponse<UserEntity> changePassword(Integer id, String newPassword, String password) {
         // Verifica se o usuário existe no banco de dados
         Optional<UserEntity> userOptional = userRepository.findById(id);
         if (userOptional.isEmpty()) {
@@ -57,11 +56,24 @@ public class UserService {
         }
 
         // Codifica a nova senha e atualiza o usuário
-        user.setPassword(passwordEncoder.encode(newPassword));
-        userRepository.save(user);
+        Iterable<UserEntity> userTest = userRepository.findByUsername(user.getUsername());
+        Iterator<UserEntity> iterator = userTest.iterator();
+
+        if (iterator.hasNext()) {
+            UserEntity userTemp = iterator.next();
+
+            if (!passwordEncoder.matches(password, userTemp.getPassword())) {
+                return new ApiResponse<>(null, "Senha incorreta");
+            }
+            user.setPassword(passwordEncoder.encode(newPassword));
+            userRepository.save(user);
 
         // Retorna sucesso na alteração
         return new ApiResponse<>(user, "Senha alterada com sucesso - 200");
+            
+        } else {
+            return new ApiResponse<>(null, "Usuário não encontrado");
+        } 
     }
 
     public ApiResponse<UserEntity> createUser(String username, String password) {
@@ -119,30 +131,6 @@ public class UserService {
         return createUser(usuario.getUsername(), usuario.getPassword());
     }
 
-    /*public ApiResponse<UserEntity> updateUser(Integer id, UserEntity user) {
-        Optional<UserEntity> existingUser = userRepository.findById(id); // Use o parâmetro id aqui
-        if (existingUser.isPresent()) {
-            UserEntity userToUpdate = existingUser.get();
-    
-            // Atualize somente a lista de favoritos
-            userToUpdate.setListaFavoritos(user.getListaFavoritos());
-    
-            // Mantenha o username e password existentes
-            // Não atualize username e password se eles forem null
-            if (user.getUsername() != null) {
-                userToUpdate.setUsername(user.getUsername());
-            }
-            if (user.getPassword() != null) {
-                userToUpdate.setPassword(user.getPassword());
-            }
-    
-            userRepository.save(userToUpdate); // Salva as mudanças no banco de dados
-            return new ApiResponse<>(userToUpdate, "Usuário atualizado com sucesso!");
-        } else {
-            return new ApiResponse<>(null, "Usuário não encontrado.");
-        }
-    }
-    */
     public ApiResponse<UserEntity> updateUser(Integer id, UserEntity user) {
         Optional<UserEntity> existingUser = userRepository.findById(id);
         if (existingUser.isPresent()) {

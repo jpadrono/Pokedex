@@ -85,8 +85,8 @@ public class UserController {
 }
 
     
-    @PutMapping("/user/change")
+    @PostMapping("/user/change")
     public ApiResponse<UserEntity> changePassword(@RequestBody ChangePasswordRequest request) {
-        return userService.changePassword(request.getId(), request.getNewPassword());
+        return userService.changePassword(request.getId(), request.getNewPassword(), request.getPassword());
     }
 }

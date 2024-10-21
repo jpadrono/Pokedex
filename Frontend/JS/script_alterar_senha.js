@@ -2,7 +2,7 @@ const usuarioteste = localStorage.getItem('userId');
 
 // URL base da API (ajuste conforme necessário)
 const API_URL = "http://localhost:8080/user/id/"; // Corrigido para corresponder à rota correta
-const URL_CHANGE = `http://localhost:8080/user/change/${usuarioteste}`;
+const URL_CHANGE = "localhost:8080/user/change";
 
 // Função para carregar os dados do usuário
 function loadUsuario(id) {
@@ -64,49 +64,30 @@ document.getElementById("troca_senha").addEventListener("submit", function (even
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            username: username,
-            password: password,
+            id: usuarioteste,      // ID obtido do localStorage
+            password: password,    // Senha atual
+            newPassword: new_password,  // Nova senha
         }),
-        })
-        .then((response) => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw new Error("Credenciais inválidas");
-            }
-        })
-        .then((data) => {
-            if (data.data) {
-                // Se a senha atual estiver correta, atualizar a senha
-                fetch(URL_CHANGE, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        password: new_password,
-                    }),
-                })
-                    .then((response) => {
-                        if (response.ok) {
-                            return response.json();
-                        } else {
-                            throw new Error("Erro ao atualizar senha");
-                        }
-                    })
-                    .then((data) => {
-                        if (data.data) {
-                            alert("Senha atualizada com sucesso!");
-                            window.location.href = "../Perfil.html";
-                        }
-                    })
-                    .catch((error) => {
-                        erroMsg.textContent = "Erro ao atualizar senha: " + error.message;
-                    });
-            }
-        })
-        .catch((error) => {
-            erroMsg.textContent = "Erro ao verificar senha: " + error.message;
-        });
-})
-
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error(`Erro ao alterar senha. Status: ${response.status}`);
+        }
+    })
+    .then(data => {
+        if (data.message === "Senha incorreta") {
+            erroMsg.innerText = "Senha incorreta";
+        } else {
+            erroMsg.style.color = "green";
+            erroMsg.innerText = "Senha alterada com sucesso";
+            document.getElementById("formCadastro").reset();
+        }
+    })
+    .catch(error => {
+        erroMsg.textContent = "Erro ao verificar senha: " + error.message;
+        console.error("Erro no fetch:", error);  // Log do erro no console
+    });
+});
+    
