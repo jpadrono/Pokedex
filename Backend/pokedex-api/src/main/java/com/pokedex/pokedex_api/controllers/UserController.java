@@ -1,5 +1,7 @@
 package com.pokedex.pokedex_api.controllers;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -88,5 +90,14 @@ public class UserController {
     @PostMapping("/user/change")
     public ApiResponse<UserEntity> changePassword(@RequestBody ChangePasswordRequest request) {
         return userService.changePassword(request.getId(), request.getNewPassword(), request.getPassword());
+    }
+
+    
+    @PostMapping("/user/upload-photo")
+    public ApiResponse<UserEntity> uploadFotoBase64(@RequestBody Map<String, String> payload) {
+        String base64Image = payload.get("fotoBase64");
+        Integer userId = Integer.parseInt(payload.get("userId"));
+
+        return userService.uploadPhoto(userId, base64Image);
     }
 }

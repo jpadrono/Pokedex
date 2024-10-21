@@ -1,6 +1,11 @@
 package com.pokedex.pokedex_api.service;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
+import java.util.Base64;
 import java.util.Iterator;
 import java.util.Optional;
 import java.util.UUID;
@@ -144,4 +149,29 @@ public class UserService {
         }
     }
     
+    public ApiResponse<UserEntity> uploadPhoto(Integer userId, String base64Image) {
+        byte[] imageBytes = Base64.getDecoder().decode(base64Image);
+        
+        // Define o nome do arquivo usando o ID do usuário
+        String imageFileName = userId + ".jpg";
+        Path destinationFile = Paths.get("../../Frontend/img/Users", imageFileName);
+
+        try {
+            // Salvar a imagem no servidor
+            Files.write(destinationFile, imageBytes);
+
+            // Atualizar o caminho da imagem no banco de dados
+            UserEntity user = userRepository.findById(userId).orElse(null);
+            if (user == null) {
+                return new ApiResponse<>(null, "Usuário não encontrado");
+            }
+            
+            user.setImgUrl(destinationFile.toString());  // Salvar o caminho da imagem
+            userRepository.save(user);
+
+            return new ApiResponse<>(null, "Foto enviada com sucesso");
+        } catch (IOException e) {
+            return new ApiResponse<>(null, "Erro ao salvar a foto: " + e.getMessage());
+        }
+    }
 }
