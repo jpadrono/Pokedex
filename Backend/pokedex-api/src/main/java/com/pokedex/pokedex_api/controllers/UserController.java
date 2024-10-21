@@ -11,11 +11,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pokedex.pokedex_api.ApiResponse;
+import com.pokedex.pokedex_api.ChangePasswordRequest;
 import com.pokedex.pokedex_api.entities.UserEntity;
 import com.pokedex.pokedex_api.repository.UserRepository;
 import com.pokedex.pokedex_api.service.UserService;
 
 import jakarta.annotation.PostConstruct;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 
 @CrossOrigin(origins = "*")
@@ -74,6 +77,10 @@ public class UserController {
     public ApiResponse<UserEntity> deleteById(@PathVariable Integer id) {
         return userService.deleteUser(id);
     }
+
     
-    
+    @PutMapping("/user/change")
+    public ApiResponse<UserEntity> changePassword(@RequestBody ChangePasswordRequest request) {
+        return userService.changePassword(request.getId(), request.getNewPassword());
+    }
 }

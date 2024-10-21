@@ -42,6 +42,28 @@ public class UserService {
         }
     }
 
+    public ApiResponse<UserEntity> changePassword(Integer id, String newPassword) {
+        // Verifica se o usuário existe no banco de dados
+        Optional<UserEntity> userOptional = userRepository.findById(id);
+        if (userOptional.isEmpty()) {
+            return new ApiResponse<>(null, "Usuário não encontrado - 404");
+        }
+
+        UserEntity user = userOptional.get();
+
+        // Verifica se a nova senha é válida
+        if (newPassword == null || newPassword.trim().isEmpty()) {
+            return new ApiResponse<>(null, "A nova senha não pode estar vazia - 400");
+        }
+
+        // Codifica a nova senha e atualiza o usuário
+        user.setPassword(passwordEncoder.encode(newPassword));
+        userRepository.save(user);
+
+        // Retorna sucesso na alteração
+        return new ApiResponse<>(user, "Senha alterada com sucesso - 200");
+    }
+
     public ApiResponse<UserEntity> createUser(String username, String password) {
         Iterable<UserEntity> userTest = userRepository.findByUsername(username);
         if (userTest.iterator().hasNext()) {
