@@ -1,4 +1,5 @@
 const usuarioteste = 552; //mudar para localStorage.getItem
+// const usuarioteste = localStorage.getItem('currentUserId');
 
 // URL base da API (ajuste conforme necessário)
 const API_URL = "http://localhost:8080/user/id/"; // Corrigido para corresponder à rota correta
@@ -32,7 +33,7 @@ function updateUsuarioInfo(usuario) {
     // Atualiza a imagem do usuário, se disponível
     const usuarioFoto = document.getElementById("usuario-foto");
 
-    localStorage.setItem('userId', usuario.id);
+    localStorage.setItem('currentUserId', usuario.id);
     
     // Se você tiver um campo 'imgUrl' no seu UserEntity, descomente a linha abaixo e ajuste o campo
     // usuarioFoto.src = usuario.imgUrl || '../img/foto_default.jpg'; // Altere se houver URL da imagem
@@ -42,6 +43,23 @@ function updateUsuarioInfo(usuario) {
 // Carregar usuário ao carregar a página
 document.addEventListener("DOMContentLoaded", () => {
     loadUsuario(usuarioteste);
+
+    // const uploadInput = document.getElementById("upload-foto");
+    // const alterarFotoBtn = document.getElementById("alterar_foto");
+    // const usuarioFoto = document.getElementById("usuario-foto");
+
+    //  // Quando o usuário selecionar um arquivo, exiba uma pré-visualização
+    //  uploadInput.addEventListener("change", (event) => {
+    //     const file = event.target.files[0];
+    //     if (file) {
+    //         const reader = new FileReader();
+    //         reader.onload = function(e) {
+    //             usuarioFoto.src = e.target.result; // Atualiza a imagem
+    //         };
+    //         reader.readAsDataURL(file); // Converte a imagem para DataURL
+    //     }
+    // });
+
     // Adiciona o evento de clique no botão "Alterar senha"
     const alterarSenhaBtn = document.querySelector("#ir_para_alt_senha");
     alterarSenhaBtn.addEventListener("click", () => {

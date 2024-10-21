@@ -1,8 +1,8 @@
-const usuarioteste = localStorage.getItem('userId');
+const usuarioteste = localStorage.getItem('currentUserId');
 
 // URL base da API (ajuste conforme necessário)
 const API_URL = "http://localhost:8080/user/id/"; // Corrigido para corresponder à rota correta
-const URL_CHANGE = "localhost:8080/user/change";
+const URL_CHANGE = "http://localhost:8080/user/change";
 
 // Função para carregar os dados do usuário
 function loadUsuario(id) {
@@ -82,7 +82,11 @@ document.getElementById("troca_senha").addEventListener("submit", function (even
         } else {
             erroMsg.style.color = "green";
             erroMsg.innerText = "Senha alterada com sucesso";
-            document.getElementById("formCadastro").reset();
+            document.getElementById("troca_senha").reset();
+            // Esperar 1 segundo antes de redirecionar para outra página
+            setTimeout(function () {
+                window.location.href = "../HTML/Perfil.html";
+            }, 1500);
         }
     })
     .catch(error => {
