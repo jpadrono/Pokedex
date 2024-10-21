@@ -20,14 +20,15 @@ public class UserEntity {
     private String imgUrl;
     private LocalDateTime authTokenExpiration;
 
-    public String  getImgUrl() {
+    private String listaFavoritos; // Armazenar IDs dos Pokémon favoritos como uma string
+
+    public String getImgUrl() {
         return imgUrl;
     }
     
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
     }
-
 
     public LocalDateTime getAuthTokenExpiration() {
         return authTokenExpiration;
@@ -45,10 +46,10 @@ public class UserEntity {
         this.authToken = authToken;
     }
 
-
     public UserEntity(String username, String password) {
         this.username = username;
         this.password = password;
+        this.listaFavoritos = ""; // Inicializar como string vazia
     }
 
     public String getUsername() {
@@ -75,12 +76,21 @@ public class UserEntity {
         this.id = id;
     }
 
+    public String getListaFavoritos() {
+        return listaFavoritos; // Getter para a lista de favoritos
+    }
+
+    public void setListaFavoritos(String listaFavoritos) {
+        this.listaFavoritos = listaFavoritos; // Setter para a lista de favoritos
+    }
+
     @Override
     public String toString() {
-        return "UserEntity [id=" + id + ", username=" + username + ", password=" + password + "]";
+        return "UserEntity [id=" + id + ", username=" + username + ", password=" + password + ", listaFavoritos=" + listaFavoritos + "]";
     }
 
     public UserEntity() {
     }
-
 }
+
+

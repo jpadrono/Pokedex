@@ -1,5 +1,6 @@
 const pokemonList = document.getElementById('pokemon-list');
 const searchInput = document.getElementById('search-input');
+let currentUserId = localStorage.getItem('currentUserId');
 
 // Mapeamento de cores para os tipos de Pokémon
 const typeColors = {
@@ -46,6 +47,7 @@ function createPokemonCard(pokemon) {
 
     card.addEventListener('click', () => {
         localStorage.setItem('currentPokemonId', pokemon.id);
+        localStorage.setItem('currentUserId', currentUserId);
         window.location.href = "telaPokemon.html";
     });
 

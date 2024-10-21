@@ -2,8 +2,8 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f5f5f5;
     margin: 0;
-    padding: 0;
     height: 100vh; /* Altura total da viewport */
+    overflow-y: auto;
     display: flex; /* Usar flexbox */
     align-items: center; /* Centralizar verticalmente */
     justify-content: center; /* Centralizar horizontalmente */
@@ -41,7 +41,8 @@ body {
 
 .container {
     width: 50%;
-    height: 80%;
+    /*height: 90%;*/
+    max-height: 100vh; /* Ajuste conforme necessário */
     margin: 0 auto;
     background: white;
     border-radius: 8px;
@@ -102,23 +103,6 @@ h1 {
     object-fit: contain;
 }
 
-/*.details {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-top: 10px;
-}
-
-.detail-item {
-    background-color: #e9ecef;
-    border-radius: 5px;
-    padding: 10px;
-}
-
-.detail-item span:first-child {
-    font-weight: bold;
-}
-*/
 .detail-item {
     background-color: #e9ecef;
     border-radius: 8px;
@@ -172,3 +156,57 @@ h1 {
     height: auto;
     margin-bottom: 20px;
 }
+.nome_e_stats{
+    background-color: #e9ecef;
+    border-radius: 8px;
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-bottom: 15px;
+}
+.stats{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.stats i {
+    font-size: 20px;
+    color: #333;
+}
+
+.stats span {
+    font-size: 14px;
+}
+.stats-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.stat-box {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 5px 10px;
+    text-align: center;
+    font-size: 0.9em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.stat-value {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.stat-name {
+    font-size: 0.8em;
+    color: #555;
+}
+
+/* Cores específicas para cada stat */
+.stat-box:nth-child(1) { background-color: #a8e6cf; } /* HP */
+.stat-box:nth-child(2) { background-color: #ffecb3; } /* Atk */
+.stat-box:nth-child(3) { background-color: #ffccbc; } /* Def */
+.stat-box:nth-child(4) { background-color: #b3e5fc; } /* Sp.Atk */
+.stat-box:nth-child(5) { background-color: #c5cae9; } /* Sp.Def */
+.stat-box:nth-child(6) { background-color: #f8bbd0; } /* Speed */
