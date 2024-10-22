@@ -10,6 +10,7 @@ public class ApiResponse<T> {
         this.data = data;
         this.message = message;
     }
+    public ApiResponse(){}
 
     // Getter para a mensagem
     public String getMessage() {

@@ -39,6 +39,7 @@ document.getElementById("formCadastro").addEventListener("submit", function (eve
           erroMsg.style.color = "green";
           erroMsg.innerText = "Usuário criado com sucesso!";
           document.getElementById("formCadastro").reset();
+          window.location.href = "login.html";
         }
       })
       .catch((error) => {
