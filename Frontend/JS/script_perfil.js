@@ -1,5 +1,4 @@
-const usuarioteste = 702; //mudar para localStorage.getItem
-// const usuarioteste = localStorage.getItem('currentUserId');
+const currentUserId = localStorage.getItem('currentUserId');
 
 // URL base da API (ajuste conforme necessário)
 const API_URL = "http://localhost:8080/user/id/"; // Rota para carregar dados do usuário
@@ -88,7 +87,7 @@ function uploadFotoBase64(userId, base64Image) {
 
 // Carregar usuário ao carregar a página
 document.addEventListener("DOMContentLoaded", () => {
-    loadUsuario(usuarioteste);
+    loadUsuario(currentUserId);
 
     const alterarFotoBtn = document.getElementById("alterar_foto");
     const uploadInput = document.getElementById("upload-foto");
@@ -113,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 console.log("Imagem Base64:", base64Image);
 
                 // Envia a imagem em Base64 ao backend
-                uploadFotoBase64(usuarioteste, base64Image);
+                uploadFotoBase64(currentUserId, base64Image);
             };
             reader.readAsDataURL(file);  // Converte o arquivo em Data URL
         }
