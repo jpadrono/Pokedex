@@ -20,7 +20,6 @@ import com.pokedex.pokedex_api.repository.UserRepository;
 import com.pokedex.pokedex_api.service.UserService;
 
 import jakarta.annotation.PostConstruct;
-import org.springframework.web.bind.annotation.PutMapping;
 
 
 @CrossOrigin(origins = "*")
