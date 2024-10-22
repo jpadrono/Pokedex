@@ -102,10 +102,10 @@ public class PokeApiService {
                         String evolutionChainUrl = evolutionChainNode.get("url").asText();
                         JsonNode evolutionChainData = restTemplate.getForObject(evolutionChainUrl, JsonNode.class);
                         if (evolutionChainData != null) {
-                            Set<String> evolutionNames = new HashSet<>();
+                            List<String> evolutionNames = new ArrayList<>();
                             extractEvolutionNames(evolutionChainData.get("chain"), evolutionNames);
                             for (String evolutionName : evolutionNames) {
-                                pokemon.setEvolves_to(evolutionName);
+                            pokemon.setEvolves_to(evolutionName);
                             }
                         }
                     }
@@ -116,7 +116,7 @@ public class PokeApiService {
         return pokemon;
 }
 
-private void extractEvolutionNames(JsonNode chainNode, Set<String> evolutionNames) {
+private void extractEvolutionNames(JsonNode chainNode, List<String> evolutionNames) {
     if (chainNode != null) {
         JsonNode speciesNode = chainNode.get("species");
         if (speciesNode != null) {
@@ -131,5 +131,6 @@ private void extractEvolutionNames(JsonNode chainNode, Set<String> evolutionName
         }
     }
 }
+
 
 }

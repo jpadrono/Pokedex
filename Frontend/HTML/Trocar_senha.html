@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-Br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../JS/script_alterar_senha.js" defer></script> <!-- 'defer' garante que o script carregue após o HTML -->
+    <title>Alterar senha</title>
+    
+    <link href="../CSS/styleLogin.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <img src="../img/foto_default.jpg" alt="Foto" class="foto" id="usuario-foto" style="border-radius: 5%;">
+        <form id="troca_senha">
+            <p id="usuario-name" class="custom-font">NOME USUARIO</p>
+            <input id = "password" type="password" placeholder="Senha" required>
+            <input id = "new_password" type="password" placeholder="Nova senha" required>
+            <input id = "new_cpassword" type="password" placeholder="Confirme sua nova senha" required>
+            <p id="erro" class="error"></p>
+            <button type="submit" class="enviar" id="alterar">Alterar senha</button>
+        </form>
+        
+    </div>
+</body>
+</html>

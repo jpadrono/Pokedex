@@ -8,18 +8,27 @@
     <title>Pokédex</title>
 </head>
 <body>
+    <button class="back" onclick="goBack()">
+        <i class="fas fa-times"></i> <!-- Ícone "x" -->
+    </button>
+    
     <div class="container">
         <div class="header">
             <button class="btn prev" onclick="previousPokemon()">
                 <span id="pokemon-anterior">Anterior</span>
             </button>
-            <h1 id="pokemon-name">Nome #Id</h1>
+            <div class="nome_e_favorito">
+                <button id="favorite-button" class="favorite-button" onclick="toggleFavorite()">
+                    <i id="heart-icon" class="fa-regular fa-heart"></i>
+                </button>
+                <h1 id="pokemon-name">Nome #Id</h1>
+            </div>
             <button class="btn next" onclick="nextPokemon()">
                 <span id="pokemon-proximo">Proximo</span>
             </button>
         </div>
-        <div class="image">
-        <img src="" alt="Imagem do Pokémon" class="pokemon-image" id="pokemon-image">
+        <div class="image">                      
+            <img src="" alt="Imagem do Pokémon" class="pokemon-image" id="pokemon-image">        
         </div>
         <div class="pokemon-info">
             <div class="details" id="pokemon-details">
@@ -48,6 +57,39 @@
                     <span>Tipos:</span>
                     <span class="value" id="pokemon-types"></span>
                 </div>
+                <div class="nome_e_stats">
+                    <div class="stats">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Status:</span>
+                    </div>
+                    <div class="stats-container">
+                        <div class="stat-box" data-stat="hp">
+                            <span class="stat-value" id="hp-value">0</span>
+                            <span class="stat-name">HP</span>
+                        </div>
+                        <div class="stat-box" data-stat="attack">
+                            <span class="stat-value" id="attack-value">0</span>
+                            <span class="stat-name">Atk</span>
+                        </div>
+                        <div class="stat-box" data-stat="defense">
+                            <span class="stat-value" id="defense-value">0</span>
+                            <span class="stat-name">Def</span>
+                        </div>
+                        <div class="stat-box" data-stat="special-attack">
+                            <span class="stat-value" id="special-attack-value">0</span>
+                            <span class="stat-name">Sp.Atk</span>
+                        </div>
+                        <div class="stat-box" data-stat="special-defense">
+                            <span class="stat-value" id="special-defense-value">0</span>
+                            <span class="stat-name">Sp.Def</span>
+                        </div>
+                        <div class="stat-box" data-stat="speed">
+                            <span class="stat-value" id="speed-value">0</span>
+                            <span class="stat-name">Speed</span>
+                        </div>
+                    </div>
+                </div>
+                
             </div>            
         </div>
     </div>
