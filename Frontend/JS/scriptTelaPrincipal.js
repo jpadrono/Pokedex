@@ -4,7 +4,7 @@ let currentUserId = localStorage.getItem('currentUserId');
 const userButton = document.getElementById('user-btn');
 
 userButton.addEventListener('click', () => {
-    window.location.href = "Trocar_senha.html";
+    window.location.href = "Perfil.html";
 });
 
 // Mapeamento de cores para os tipos de Pokémon
