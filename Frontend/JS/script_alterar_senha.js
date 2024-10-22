@@ -3,6 +3,8 @@ const usuarioteste = localStorage.getItem('currentUserId');
 // URL base da API (ajuste conforme necessário)
 const API_URL = "http://localhost:8080/user/id/"; // Corrigido para corresponder à rota correta
 const URL_CHANGE = "http://localhost:8080/user/change";
+const IMG_PATH = "../img/Users/";
+const DEFAULT_IMG = "../img/foto_default.jpg"; // Caminho da imagem padrão
 
 // Função para carregar os dados do usuário
 function loadUsuario(id) {
@@ -25,24 +27,38 @@ function loadUsuario(id) {
         });
 }
 
+// Função para verificar se a imagem existe
+function checkImageExists(url) {
+    return fetch(url, { method: 'HEAD' })
+        .then(response => response.ok)
+        .catch(() => false);
+}
+
 // Função para atualizar a página com os detalhes do usuário
 function updateUsuarioInfo(usuario) {
     // Atualiza o nome do usuário
     document.getElementById("usuario-name").textContent = `${usuario.username}`;
 
-    // Atualiza a imagem do usuário, se disponível
+    // Atualiza a imagem do usuário
     const usuarioFoto = document.getElementById("usuario-foto");
+    const userId = usuario.id;
 
-    // Se você tiver um campo 'imgUrl' no seu UserEntity, descomente a linha abaixo e ajuste o campo
-    // usuarioFoto.src = usuario.imgUrl || '../img/foto_default.jpg'; // Altere se houver URL da imagem
-    // Informações do usuario atualizadas na página
+    // Construir a URL da imagem do usuário
+    const userImageUrl = `${IMG_PATH}${userId}.jpg`; // Altere para .png se necessário
+
+    // Verifica se a imagem existe e define a imagem correspondente ou a padrão
+    checkImageExists(userImageUrl).then(exists => {
+        usuarioFoto.src = exists ? userImageUrl : DEFAULT_IMG;
+    });
+
+    // Armazenar o ID do usuário no localStorage
+    localStorage.setItem('currentUserId', userId);
 }
 
 // Carregar usuário ao carregar a página
 document.addEventListener("DOMContentLoaded", () => {
     loadUsuario(usuarioteste); 
 });
-
 
 document.getElementById("troca_senha").addEventListener("submit", function (event) {
     event.preventDefault();
@@ -94,4 +110,3 @@ document.getElementById("troca_senha").addEventListener("submit", function (even
         console.error("Erro no fetch:", error);  // Log do erro no console
     });
 });
-    

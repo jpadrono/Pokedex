@@ -3,8 +3,9 @@ const usuarioteste = 702; //mudar para localStorage.getItem
 
 // URL base da API (ajuste conforme necessário)
 const API_URL = "http://localhost:8080/user/id/"; // Rota para carregar dados do usuário
-const API_FOTO =  "http://localhost:8080/user/upload-photo";
+const API_FOTO = "http://localhost:8080/user/upload-photo";
 const IMG_PATH = "../img/Users/"; // Caminho onde as imagens são armazenadas
+const DEFAULT_IMG = "../img/foto_default.jpg"; // Caminho da imagem padrão
 
 // Função para carregar os dados do usuário
 function loadUsuario(id) {
@@ -27,6 +28,13 @@ function loadUsuario(id) {
         });
 }
 
+// Função para verificar se a imagem existe
+function checkImageExists(url) {
+    return fetch(url, { method: 'HEAD' })
+        .then(response => response.ok)
+        .catch(() => false);
+}
+
 // Função para atualizar a página com os detalhes do usuário
 function updateUsuarioInfo(usuario) {
     // Atualiza o nome do usuário
@@ -36,8 +44,13 @@ function updateUsuarioInfo(usuario) {
     const usuarioFoto = document.getElementById("usuario-foto");
     const userId = usuario.id;
 
-    // Carregar a imagem do caminho correto
-    usuarioFoto.src = `${IMG_PATH}${userId}.jpg`; // A imagem será carregada com base no ID do usuário
+    // Construir a URL da imagem do usuário
+    const userImageUrl = `${IMG_PATH}${userId}.jpg`; // Altere para .png se necessário
+
+    // Verifica se a imagem existe e define a imagem correspondente ou a padrão
+    checkImageExists(userImageUrl).then(exists => {
+        usuarioFoto.src = exists ? userImageUrl : DEFAULT_IMG;
+    });
 
     // Armazenar o ID do usuário no localStorage
     localStorage.setItem('currentUserId', userId);
