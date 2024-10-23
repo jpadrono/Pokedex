@@ -22,7 +22,7 @@ import com.pokedex.pokedex_api.service.UserService;
 import jakarta.annotation.PostConstruct;
 
 
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://127.0.0.1:5500")
 @RestController
 public class UserController {
 

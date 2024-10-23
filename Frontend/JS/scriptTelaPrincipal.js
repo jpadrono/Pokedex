@@ -1,6 +1,11 @@
 const pokemonList = document.getElementById('pokemon-list');
 const searchInput = document.getElementById('search-input');
 let currentUserId = localStorage.getItem('currentUserId');
+const userButton = document.getElementById('user-btn');
+
+userButton.addEventListener('click', () => {
+    window.location.href = "Perfil.html";
+});
 
 // Mapeamento de cores para os tipos de Pokémon
 const typeColors = {
