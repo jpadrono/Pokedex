@@ -20,11 +20,6 @@ import com.pokedex.pokedex_api.service.UserService;
 
 import jakarta.annotation.PostConstruct;
 
-
-<<<<<<< HEAD:Backend/pokedex-api/src/main/java/com/pokedex/pokedex_api/controllers/UserController.java
-=======
-
->>>>>>> f3b7fc19abf246df12ed0de345b1caa8bc9a2f81:Backend/pokedex-api/src/main/java/com/pokedex/pokedex_api/config/controllers/UserController.java
 @RestController
 public class UserController {
 

@@ -10,9 +10,6 @@ import com.pokedex.pokedex_api.service.PokemonService;
 
 import jakarta.annotation.PostConstruct;
 
-<<<<<<< HEAD:Backend/pokedex-api/src/main/java/com/pokedex/pokedex_api/controllers/PokedexController.java
-=======
->>>>>>> f3b7fc19abf246df12ed0de345b1caa8bc9a2f81:Backend/pokedex-api/src/main/java/com/pokedex/pokedex_api/config/controllers/PokedexController.java
 @RestController
 public class PokedexController {
 

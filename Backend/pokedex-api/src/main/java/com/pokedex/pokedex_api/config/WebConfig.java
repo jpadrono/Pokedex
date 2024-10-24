@@ -1,8 +1,3 @@
-<<<<<<<HEAD package com.pokedex.pokedex_api.config;
-
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;=======
 package com.pokedex.pokedex_api.config;
 
 import org.springframework.context.annotation.Configuration;
@@ -20,4 +15,4 @@ public class WebConfig implements WebMvcConfigurer {
                  .allowedHeaders("*")
              .allowCredentials(true);
      }
-}>>>>>>>f3b7fc19abf246df12ed0de345b1caa8bc9a2f81
+}
