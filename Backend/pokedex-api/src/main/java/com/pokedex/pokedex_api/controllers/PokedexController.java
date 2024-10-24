@@ -1,6 +1,5 @@
 package com.pokedex.pokedex_api.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,7 +11,7 @@ import com.pokedex.pokedex_api.service.PokemonService;
 import jakarta.annotation.PostConstruct;
 
 @RestController
-@CrossOrigin(origins = "http://127.0.0.1:5500")
+
 public class PokedexController {
 
     @Autowired

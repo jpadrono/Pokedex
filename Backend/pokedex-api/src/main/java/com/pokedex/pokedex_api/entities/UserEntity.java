@@ -20,7 +20,7 @@ public class UserEntity {
     private String imgUrl;
     private LocalDateTime authTokenExpiration;
 
-    private String listaFavoritos; // Armazenar IDs dos Pokémon favoritos como uma string
+    private String listaFavoritos; 
 
     public String getImgUrl() {
         return imgUrl;
