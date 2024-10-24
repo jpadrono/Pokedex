@@ -150,6 +150,8 @@ function toggleFavorite() {
 }
 
 
+
+
 function parseStats(statsString) {
     // Cria um objeto para armazenar os stats extraídos
     const stats = {};

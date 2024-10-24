@@ -1,4 +1,4 @@
-const usuarioteste = localStorage.getItem('currentUserId');
+const currentUserId = localStorage.getItem('currentUserId');
 
 // URL base da API (ajuste conforme necessário)
 const API_URL = "http://localhost:8080/user/id/"; // Corrigido para corresponder à rota correta
@@ -57,7 +57,7 @@ function updateUsuarioInfo(usuario) {
 
 // Carregar usuário ao carregar a página
 document.addEventListener("DOMContentLoaded", () => {
-    loadUsuario(usuarioteste); 
+    loadUsuario(currentUserId); 
 });
 
 document.getElementById("troca_senha").addEventListener("submit", function (event) {
@@ -80,7 +80,7 @@ document.getElementById("troca_senha").addEventListener("submit", function (even
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            id: usuarioteste,      // ID obtido do localStorage
+            id: currentUserId,      // ID obtido do localStorage
             password: password,    // Senha atual
             newPassword: new_password,  // Nova senha
         }),

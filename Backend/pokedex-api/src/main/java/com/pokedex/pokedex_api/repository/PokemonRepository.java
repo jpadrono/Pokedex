@@ -17,6 +17,6 @@ public interface PokemonRepository extends JpaRepository<PokemonEntity, Integer>
     @Query(value = "SELECT * FROM pokemon_entity ORDER BY RAND() LIMIT 1", nativeQuery = true)
     PokemonEntity findRandomPokemon();
 
-    @Query(value = "SELECT * FROM pokemons ORDER BY RAND() LIMIT 1", nativeQuery = true)
+    @Query(value = "SELECT * FROM pokemons ORDER BY RAND() LIMIT ?1", nativeQuery = true)
     List<PokemonEntity> findRandomPokemons(int limit);
 }
