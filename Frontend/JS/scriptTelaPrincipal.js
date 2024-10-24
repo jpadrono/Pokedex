@@ -2,6 +2,7 @@ const pokemonList = document.getElementById('pokemon-list');
 const searchInput = document.getElementById('search-input');
 let currentUserId = localStorage.getItem('currentUserId');
 const userButton = document.getElementById('user-btn');
+const favButton = document.getElementById('fav-btn');
 
 userButton.addEventListener('click', () => {
     window.location.href = "Perfil.html";
@@ -30,13 +31,17 @@ const typeColors = {
 };
 
 let pokemons = []; 
+let userFavorites = []; // Inicializa a lista de favoritos
+
+const API_URL = 'http://localhost:8080/pokedex';
+const API_USER_URL = `http://localhost:8080/user/id/${currentUserId}`;
 
 
+// Função para criar um cartão de Pokémon
 function createPokemonCard(pokemon) {
     const card = document.createElement('div');
     card.setAttribute('id', pokemon.id);
     card.classList.add('pokemon-card');
-
 
     const typesHTML = pokemon.types.map(type => {
         const color = typeColors[type] || '#A8A878'; 
@@ -70,30 +75,48 @@ function displayPokemons(pokemonArray) {
 
 // Função para buscar os Pokémon da API
 function fetchPokemons() {
-    fetch('http://localhost:8080/pokedex') // URL da sua API Spring Boot
+    fetch(API_URL) // URL da sua API Spring Boot
         .then(response => response.json())
         .then(data => {
             pokemons = data; // Armazena os Pokémon vindos da API
-            displayPokemons(pokemons); // Exibe todos os Pokémon
+            fetchUserFavorites(); // Busca os favoritos após carregar os Pokémon
         })
         .catch(error => {
             console.error('Erro ao buscar os Pokémon:', error);
         });
 }
 
+// Função para buscar os favoritos do usuário
+function fetchUserFavorites() {
+    fetch(API_USER_URL)
+        .then(response => response.json())
+        .then(user => {
+            userFavorites = user.data.listaFavoritos ? user.data.listaFavoritos.split(',').map(id => id.trim()) : [];
+            displayPokemons(pokemons); // Exibe todos os Pokémon após carregar favoritos
+        })
+        .catch(error => {
+            console.error('Erro ao buscar os favoritos do usuário:', error);
+        });
+}
+
 // Função de filtro de Pokémon
 function filterPokemons() {
     const searchText = searchInput.value.toLowerCase();
-
     const filteredPokemons = pokemons.filter(pokemon => {
         const pokemonName = pokemon.name.toLowerCase();
         const pokemonId = pokemon.id.toString();
         return pokemonName.includes(searchText) || pokemonId.includes(searchText);
     });
-
     displayPokemons(filteredPokemons);
 }
 
+
+// Função de filtro Pokémon favoritos
+function filterFavPokemons() {
+    const filteredPokemonsFav = pokemons.filter(pokemon => userFavorites.includes(pokemon.id.toString()));
+    displayPokemons(filteredPokemonsFav);
+}
+// Capitaliza a primeira letra de uma string
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
@@ -101,5 +124,8 @@ function capitalizeFirstLetter(string) {
 // Adiciona o evento de input para filtrar os Pokémon conforme o usuário digita
 searchInput.addEventListener('input', filterPokemons);
 
-// Busca os Pokémon quando a página é carregada
+// Adiciona o evento de clique ao botão de favoritos
+favButton.addEventListener('click', filterFavPokemons);
+
+// Busca os Pokémon e os favoritos quando a página é carregada
 fetchPokemons();
