@@ -3,9 +3,13 @@ const searchInput = document.getElementById('search-input');
 let currentUserId = localStorage.getItem('currentUserId');
 const userButton = document.getElementById('user-btn');
 const favButton = document.getElementById('fav-btn');
-
+const quizButton = document.getElementById('quiz-btn');
 userButton.addEventListener('click', () => {
     window.location.href = "Perfil.html";
+});
+
+quizButton.addEventListener('click', () => {
+    window.location.href = "telaQuiz.html";
 });
 
 // Mapeamento de cores para os tipos de Pokémon
@@ -124,8 +128,22 @@ function capitalizeFirstLetter(string) {
 // Adiciona o evento de input para filtrar os Pokémon conforme o usuário digita
 searchInput.addEventListener('input', filterPokemons);
 
-// Adiciona o evento de clique ao botão de favoritos
-favButton.addEventListener('click', filterFavPokemons);
+let mostrarfav = false; 
 
+favButton.addEventListener('click', () => {
+    mostrarfav = !mostrarfav;
+    if (mostrarfav) {
+        displayPokemons(pokemons);
+        favButton.style.backgroundColor = "#ff5722";
+        
+    }
+    else {
+        filterFavPokemons();
+        //deixar sombra
+        favButton.style.backgroundColor = "#c42700";
+    }
+    
+    
+})
 // Busca os Pokémon e os favoritos quando a página é carregada
 fetchPokemons();

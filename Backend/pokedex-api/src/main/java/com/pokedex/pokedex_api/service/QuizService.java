@@ -1,16 +1,18 @@
 package com.pokedex.pokedex_api.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import com.pokedex.pokedex_api.entities.QuizEntity;
-import com.pokedex.pokedex_api.entities.PokemonEntity;
-import com.pokedex.pokedex_api.repository.QuizRepository;
-import com.pokedex.pokedex_api.repository.PokemonRepository;
-import jakarta.annotation.PostConstruct;
-
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.pokedex.pokedex_api.entities.PokemonEntity;
+import com.pokedex.pokedex_api.entities.QuizEntity;
+import com.pokedex.pokedex_api.repository.PokemonRepository;
+import com.pokedex.pokedex_api.repository.QuizRepository;
+
+import jakarta.annotation.PostConstruct;
 
 @Service
 public class QuizService {
@@ -59,7 +61,7 @@ public class QuizService {
         Collections.shuffle(alternativePokemons);
 
         // Cria e salva a pergunta
-        QuizEntity quiz = new QuizEntity(correctPokemon.getImgUrl(), alternativePokemons, correctPokemon.getId());
+        QuizEntity quiz = new QuizEntity(correctPokemon.getImg(), alternativePokemons, correctPokemon.getId());
         quizRepository.save(quiz);
     }
 }
