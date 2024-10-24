@@ -35,7 +35,7 @@ public class PokedexController {
         return pokemonRepository.findAll();
     }
 
-    @GetMapping("/pokedex/id/{id}") // http://localhost:8080/pokedex/2
+    @GetMapping("/pokedex/id/{id}") // http://localhost:8080/pokedex/id/2
     public PokemonEntity findPokemonById(@PathVariable("id") Integer id) {
         return pokemonRepository.findById(id).orElse(null);
     }
