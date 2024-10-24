@@ -3,7 +3,6 @@ package com.pokedex.pokedex_api.controllers;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +21,11 @@ import com.pokedex.pokedex_api.service.UserService;
 import jakarta.annotation.PostConstruct;
 
 
+<<<<<<< HEAD:Backend/pokedex-api/src/main/java/com/pokedex/pokedex_api/controllers/UserController.java
 @CrossOrigin(origins = "*")
+=======
+
+>>>>>>> f3b7fc19abf246df12ed0de345b1caa8bc9a2f81:Backend/pokedex-api/src/main/java/com/pokedex/pokedex_api/config/controllers/UserController.java
 @RestController
 public class UserController {
 

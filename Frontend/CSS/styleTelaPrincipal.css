@@ -61,6 +61,16 @@ header {
   cursor: pointer;
 }
 
+#fav-btn {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ff5722;
+  color: white;
+  cursor: pointer;
+}
+  
+
 .search-bar p {
   color: #ccc;
   font-size: 14px;
@@ -109,6 +119,8 @@ header {
   right: 20px;
 }
 
+
+
 #user-btn {
   padding: 10px 15px;
   border: none;
@@ -119,5 +131,33 @@ header {
 }
 
 #user-btn:hover {
+  background-color: #c42700;
+}
+
+#fav-btn:hover {
+  background-color: #c42700;
+}
+#search-btn:hover {
+  background-color: #c42700;
+}
+
+
+
+.quiz-button {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+}
+
+#quiz-btn {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ff5722;
+  color: white;
+  cursor: pointer;
+}
+
+#quiz-btn:hover {
   background-color: #c42700;
 }

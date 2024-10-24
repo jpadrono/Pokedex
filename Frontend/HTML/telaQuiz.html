@@ -4,16 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/quizStyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel = "icon" href = "../CSS/favicon-16x16.png">
+
     <title>Quiz</title>
 </head>
 <body>
+    <button class="btn-exit" onclick="exitQuiz()">
+        <i class="fas fa-times"></i>
+    </button>
+    
     <div class="container">
         <div class="header">
-            <button class="btn prev" onclick="previousQuizQuestion()">
+            <button class="btn-prev" onclick="previousQuizQuestion()">
                 <span id="pokemon-anterior">Anterior</span>
             </button>
             <h1 id="Question">Quem é esse pokemon ?</h1>
-            <button class="btn next" onclick="nextQuizQuestion()">
+            <button class="btn-next" onclick="nextQuizQuestion()">
                 <span id="pokemon-proximo">Proximo</span>
             </button>
         </div>
@@ -27,6 +34,7 @@
             <button class="alternative" id="alt3"></button>
             <button class="alternative" id="alt4"></button>
         </div>
+        
     </div>
 
     <!-- Corrigindo a forma de carregar o arquivo JS -->
