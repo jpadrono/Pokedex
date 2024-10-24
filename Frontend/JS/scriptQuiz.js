@@ -3,7 +3,11 @@ const API_URL = "http://localhost:8080/quiz/pokemons";
 let currentQuizIndex = 0;
 let correctAnswerId = null;
 let selectedAlternativeId = null;
+let quitbutton = document.getElementById("quit-button");
 
+function exitQuiz() {
+    window.location.href = "telaPrincipal.html";
+}
 function loadQuizQuestion(index) {
     console.log(`Carregando pergunta do quiz: ${index}`);
     fetch(API_URL)

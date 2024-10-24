@@ -20,6 +20,7 @@ private String name;
     private ArrayList<String> abilities;
     private String stats;
 
+
     public PokemonEntity(String name, Integer id, Integer height, Integer weight, String img) {
         this.name = name;
         this.id = id;

@@ -119,6 +119,8 @@ header {
   right: 20px;
 }
 
+
+
 #user-btn {
   padding: 10px 15px;
   border: none;
@@ -136,5 +138,26 @@ header {
   background-color: #c42700;
 }
 #search-btn:hover {
+  background-color: #c42700;
+}
+
+
+
+.quiz-button {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+}
+
+#quiz-btn {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ff5722;
+  color: white;
+  cursor: pointer;
+}
+
+#quiz-btn:hover {
   background-color: #c42700;
 }

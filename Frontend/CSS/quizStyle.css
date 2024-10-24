@@ -37,7 +37,7 @@ body {
 }
 
 .image {
-    filter:brightness(0%);
+    filter: brightness(0%);
     width: 100%;
     height: 50%;
     object-fit: contain;
@@ -59,19 +59,44 @@ body {
     margin: 40px auto;
 }
 
+button {
+    padding: 15px 30px; /* Espaçamento interno */
+    font-size: 18px; /* Tamanho da fonte */
+    cursor: pointer; /* Cursor de ponteiro */
+    color: white; /* Cor do texto */
+    border: none; /* Sem borda */
+    border-radius: 10px; /* Bordas arredondadas */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transições suaves */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra do botão */
+}
+
+.btn-prev,
+.btn-next {
+    background-color: #e41818; /* Cor de fundo padrão */
+}
+
+.btn-prev:hover,
+.btn-next:hover {
+    background-color: #c71616; /* Cor ao passar o mouse */
+    transform: translateY(-2px); /* Leve elevação do botão */
+}
+
+.btn-prev:active,
+.btn-next:active {
+    transform: translateY(0); /* Voltar à posição original ao clicar */
+}
+
 .alternative {
-    padding: 15px 30px;
-    font-size: 18px;
-    cursor: pointer;
-    background-color: #8e8e8e;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    transition: background-color 0.3s ease;
+    background-color: #8e8e8e; /* Cor de fundo padrão */
 }
 
 .alternative:hover {
-    background-color: #0056b3; /* Cor de fundo ao passar o mouse */
+    background-color: #0056b3; /* Cor ao passar o mouse */
+    transform: translateY(-2px); /* Leve elevação do botão */
+}
+
+.alternative:active {
+    transform: translateY(0); /* Voltar à posição original ao clicar */
 }
 
 .right {
@@ -82,7 +107,40 @@ body {
     background-color: crimson;
 }
 
+
 .disabled-button {
-    opacity: 0.5; 
-    pointer-events: none; 
+    opacity: 0.5; /* Reduz a opacidade */
+    pointer-events: none; /* Desabilita interações */
+}
+
+.btn-exit {
+    background-color: #e41818; /* Cor de fundo */
+    border: #e41818;
+    color: rgb(255, 255, 255); /* Cor do ícone */
+    padding: 0; /* Remove o padding */
+    border-radius: 50%; /* Torna o botão redondo */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centraliza o ícone */
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 40px; /* Tamanho do botão */
+    height: 40px; /* Tamanho do botão */
+    position: absolute; /* Permite que o botão fique no canto */
+    top: 10px; /* Distância do topo */
+    left: 10px; /* Distância da esquerda */
+}
+
+.btn-exit:hover {
+    background-color: #b01212; /* Cor ao passar o mouse */
+}
+
+.btn-exit i {
+    color: white;
+    font-size: 20px;
+    align-items: center;
+
+    transition: color 0.3s ease; /* Transições suaves */
+
+    
 }
