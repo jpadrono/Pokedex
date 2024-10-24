@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.pokedex.pokedex_api.entities.QuizEntity;
 import com.pokedex.pokedex_api.repository.QuizRepository;
 
-@CrossOrigin(origins = "http://localhost:5500")
+@CrossOrigin(origins = "*")
 @RestController
 public class QuizController {
     

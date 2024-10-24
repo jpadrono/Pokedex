@@ -11,8 +11,8 @@ import com.pokedex.pokedex_api.service.PokemonService;
 
 import jakarta.annotation.PostConstruct;
 
-@RestController
 @CrossOrigin(origins = "*")
+@RestController
 public class PokedexController {
 
     @Autowired
