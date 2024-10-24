@@ -1,17 +1,14 @@
 package com.pokedex.pokedex_api.service;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.HashSet;
-import java.util.Set;
 
-//import org.hibernate.mapping.Set;
 import org.springframework.web.client.RestTemplate;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.pokedex.pokedex_api.entities.PokemonEntity;
 
 
 public class PokeApiService {
-    private static final String ArrayList = null;
     private final RestTemplate restTemplate;
 
     public PokeApiService(RestTemplate restTemplate) {
@@ -50,25 +47,6 @@ public class PokeApiService {
                 String abilityName = abilityDetails.get("name").asText();
                 pokemon.setAbilities(abilityName);
             }
-        }
-
-        /*JsonNode spritesNode = jsonNode.get("sprites");
-        if (spritesNode != null) {
-            // Extrai a URL da sprite padrão da frente
-            JsonNode frontDefaultNode = spritesNode.get("front_default");
-            if (frontDefaultNode != null) {
-                String frontDefaultUrl = frontDefaultNode.asText();
-                pokemon.setImgUrl(frontDefaultUrl);
-            }}*/
-        if(id<10)
-        {
-            pokemon.setImgUrl("https://assets.pokemon.com/assets/cms2/img/pokedex/detail/00"+id+".png");
-        }
-        else if(id<100){
-            pokemon.setImgUrl("https://assets.pokemon.com/assets/cms2/img/pokedex/detail/0"+id+".png");
-        }
-        else{
-            pokemon.setImgUrl("https://assets.pokemon.com/assets/cms2/img/pokedex/detail/"+id+".png");
         }
 
         List<Integer> statsValues = new ArrayList<>();
