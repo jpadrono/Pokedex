@@ -85,6 +85,10 @@ function uploadFotoBase64(userId, base64Image) {
     });
 }
 
+function goBack() {
+    window.location.href = "telaPrincipal.html";
+}
+
 // Carregar usuário ao carregar a página
 document.addEventListener("DOMContentLoaded", () => {
     loadUsuario(currentUserId);

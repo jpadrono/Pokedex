@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.pokedex.pokedex_api.entities.QuizEntity;
 import com.pokedex.pokedex_api.repository.QuizRepository;
 
+<<<<<<< HEAD:Backend/pokedex-api/src/main/java/com/pokedex/pokedex_api/controllers/QuizController.java
+@CrossOrigin(origins = "*")
+=======
+>>>>>>> f3b7fc19abf246df12ed0de345b1caa8bc9a2f81:Backend/pokedex-api/src/main/java/com/pokedex/pokedex_api/config/controllers/QuizController.java
 @RestController
 public class QuizController {
     
