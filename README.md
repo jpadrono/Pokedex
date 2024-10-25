@@ -34,8 +34,7 @@ Certifique-se de que os seguintes programas estão instalados e configurados:
 - **MySQL**: Banco de dados MySQL rodando localmente.
 
 ### Passo 0: Clonar esse repositório
-
-```
+```bash
 git clone https://github.com/jpadrono/Pokedex
 cd Pokedex
 ```
@@ -46,3 +45,26 @@ cd Pokedex
 ```sql
 CREATE DATABASE crudaula
 ```
+
+- Crie o usuário crudaula com a senha 12345
+```sql
+CREATE USER 'crudaula'@'localhost' IDENTIFIED BY '12345';
+GRANT ALL PRIVILEGES ON crudaula.* TO 'crudaula'@'localhost';
+FLUSH PRIVILEGES;
+```
+
+### Passo 2: Compilação e execução
+- Compile e execute o porgrama usando Gradle
+```bash
+cd .\Backend\pokedex-api\
+.\gradlew build
+.\gradlew bootRun
+```
+
+### Passo 3: Acessando a Aplicação
+- A API estará disponível em http://localhost:8080.
+- Para acessar a interface da aplicação, vá até a pasta Frontend com o seguinte comando:
+```bash
+cd ..\..\Frontend\HTML\
+```
+- Abra o arquivo login.html no navegador para visualizar a tela inicial
