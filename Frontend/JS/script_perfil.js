@@ -89,6 +89,11 @@ function goBack() {
     window.location.href = "telaPrincipal.html";
 }
 
+function logout(){
+    localStorage.removeItem('currentUserId');
+    window.location.href = "login.html";
+}
+
 // Carregar usuário ao carregar a página
 document.addEventListener("DOMContentLoaded", () => {
     loadUsuario(currentUserId);

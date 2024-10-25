@@ -49,7 +49,19 @@ input {
     
 }
 
-
+#alterar_foto{
+    background-color: #e41818;
+    position: relative;
+    border-radius: 5px;
+    width: 50%;
+    height: 35px;
+    margin-top: 20px;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    box-shadow: 0 5px #572222; /* Adiciona sombra vermelha escura */
+    transition: all 0.2s ease; /
+}
 
 
 
