@@ -21,26 +21,20 @@
         android:layout_marginBottom="15dp"
         app:srcCompat="@drawable/logo" />
 
-    <GridLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:columnCount="3">
+        android:layout_height="match_parent">
+        <GridLayout
+            android:id="@+id/gridLlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:layout_marginLeft="50dp">
 
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_columnWeight="1"
-            android:src="@drawable/logo" />
 
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_columnWeight="1"
-            android:src="@drawable/logo" />
 
-        <!-- Adicione mais imagens conforme necessário -->
-
-    </GridLayout>
+        </GridLayout>
+    </ScrollView>
 
 
 

@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <!-- Permitir tráfego claro para localhost e o IP da sua máquina -->
+        <domain includeSubdomains="true">localhost</domain>
+        <domain includeSubdomains="true">192.168.56.1</domain> <!-- IP local da sua máquina -->
+    </domain-config>
+</network-security-config>
 
-</PreferenceScreen>
